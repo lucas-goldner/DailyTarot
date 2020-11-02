@@ -8,6 +8,7 @@ import {
   Image,
   Alert,
   TouchableOpacity,
+  Platform,
 } from "react-native";
 
 export default function App() {
@@ -23,7 +24,7 @@ export default function App() {
         onPress={() =>
           Alert.alert("My little title", "Twilight", [
             { text: "Yes", onPress: () => console.log("Yes") },
-            { text: "No", onPress: () => console.log("Yes") },
+            { text: "No", onPress: () => console.log("No") },
           ])
         }
       />
@@ -52,7 +53,7 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "dodgerblue",
+    backgroundColor: Platform.OS === "android" ? "#D9F9D9" : "dodgerblue",
     alignItems: "center",
     justifyContent: "center",
   },
