@@ -7,30 +7,10 @@ import {
   Dimensions,
 } from "react-native";
 import { useDimensions } from "@react-native-community/hooks";
+import WelcomeScreen from "./screens/WelcomeScreen";
 
 export default function App() {
-  return (
-    <View style={styles.container}>
-      <View style={styles.viewOne}></View>
-      <View style={styles.viewTwo}></View>
-    </View>
-  );
+  return <WelcomeScreen />;
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "dodgerblue",
-    flexDirection: "row",
-  },
-  viewOne: {
-    backgroundColor: "orange",
-    width: "50%",
-    height: "10%",
-  },
-  viewTwo: {
-    backgroundColor: "purple",
-    width: "50%",
-    height: "10%",
-  },
-});
+const styles = StyleSheet.create({});
