@@ -1,92 +1,79 @@
-import * as React from "react";
-import {
-  Text,
-  View,
-  StyleSheet,
-  TouchableWithoutFeedback,
-  Image,
-} from "react-native";
+import React, { useState } from "react";
+import { Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colours from "./res/colours";
-
-function Feed() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Feed!</Text>
-    </View>
-  );
-}
-
-function Profile() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Profile!</Text>
-    </View>
-  );
-}
-
-function Notifications() {
-  return (
-    <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-      <Text>Notifications!</Text>
-    </View>
-  );
-}
+import WelcomeScreen from "./screens/WelcomeScreen";
+import HomeScreen from "./screens/HomeScreen";
 
 const Tab = createMaterialBottomTabNavigator();
 
-function MyTabs() {
-  return (
-    <Tab.Navigator
-      initialRouteName="Feed"
-      shifting={true}
-      activeColor={colours.bg}
-      labelStyle={{ fontSize: 12 }}
-    >
-      <Tab.Screen
-        name="Feed"
-        component={Feed}
-        options={{
-          tabBarLabel: "Home",
-          tabBarColor: "tomato",
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="home" color={color} size={26} />
-          ),
-        }}
-      />
-      <Tab.Screen
-        name="Profile"
-        component={Profile}
-        activeColor
-        options={{
-          tabBarLabel: "Profile",
-          tabBarColor: "green",
-          tabBarIcon: ({ color }) => (
-            <MaterialCommunityIcons name="account" color={color} size={26} />
-          ),
-        }}
-      />
-    </Tab.Navigator>
-  );
-}
-
 export default function App() {
+  const [actionColourChange, setActionColourChange] = useState(false);
   const toggleOpen = () => {};
+  const handleChange = () => {
+    setActionColourChange((actionColourChange) => !actionColourChange);
+  };
+
+  const actnButStyle = StyleSheet.create({
+    actBtn: {
+      backgroundColor: !actionColourChange
+        ? colours.secondaryThick
+        : colours.primaryThick,
+      textShadowOffset: { width: 5, height: 5 },
+      textShadowRadius: 10,
+      borderWidth: 0,
+      borderColor: colours.bg,
+    },
+  });
+
   return (
     <NavigationContainer>
-      <MyTabs />
+      <Tab.Navigator
+        initialRouteName="Card"
+        shifting={true}
+        activeColor={colours.bg}
+        labelStyle={{ fontSize: 12 }}
+      >
+        <Tab.Screen
+          name="Card"
+          component={WelcomeScreen}
+          options={{
+            tabBarLabel: "Card",
+            tabBarColor: colours.primaryThick,
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons name="cards" color={color} size={26} />
+            ),
+          }}
+        />
+        <Tab.Screen
+          name="History"
+          component={HomeScreen}
+          listeners={() => handleChange()}
+          options={{
+            tabBarLabel: "History",
+            tabBarColor: colours.secondaryThick,
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons
+                name="book-open-variant"
+                color={color}
+                size={26}
+              />
+            ),
+          }}
+        />
+      </Tab.Navigator>
       <View style={styles.btnCircle}>
-        <TouchableWithoutFeedback onPress={() => toggleOpen()}>
-          <View style={[styles.button, styles.actionBtn]}>
+        <View style={[styles.button, actnButStyle.actBtn]}>
+          <TouchableOpacity onPress={() => toggleOpen()}>
             <Image
               style={{ width: 60, height: 60 }}
               resizeMode="contain"
               source={require("./assets/plusIcon.png")}
             />
-          </View>
-        </TouchableWithoutFeedback>
+          </TouchableOpacity>
+        </View>
       </View>
     </NavigationContainer>
   );
@@ -98,7 +85,7 @@ const styles = StyleSheet.create({
     height: 60,
     alignItems: "center",
     justifyContent: "center",
-    shadowColor: "grey",
+    shadowColor: colours.bg,
     shadowOpacity: 0.1,
     shadowOffset: { x: 2, y: 0 },
     shadowRadius: 2,
@@ -109,14 +96,6 @@ const styles = StyleSheet.create({
     top: 5,
     left: 5,
     shadowOpacity: 5.0,
-  },
-  actionBtn: {
-    backgroundColor: "#1E90FF",
-    backgroundColor: colours.primaryThick,
-    textShadowOffset: { width: 5, height: 5 },
-    textShadowRadius: 10,
-    borderWidth: 2,
-    borderColor: "#fff",
   },
   btnCircle: {
     position: "absolute",
