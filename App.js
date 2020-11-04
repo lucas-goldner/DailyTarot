@@ -8,9 +8,10 @@ import {
 } from "react-native";
 import { useDimensions } from "@react-native-community/hooks";
 import WelcomeScreen from "./screens/WelcomeScreen";
+import HomeScreen from "./screens/HomeScreen";
 
 export default function App() {
-  return <WelcomeScreen />;
+  return <HomeScreen />;
 }
 
 const styles = StyleSheet.create({});
