@@ -3,7 +3,7 @@ import { StyleSheet, View, Text } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import colours from "../res/colours";
 
-function HomeScreen() {
+function HistoryScreen() {
   return (
     <View>
       <Text>ey</Text>
@@ -13,4 +13,4 @@ function HomeScreen() {
 
 const styles = StyleSheet.create({});
 
-export default HomeScreen;
+export default HistoryScreen;

@@ -4,8 +4,8 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colours from "./res/colours";
-import WelcomeScreen from "./screens/WelcomeScreen";
-import HomeScreen from "./screens/HomeScreen";
+import CardScreen from "./screens/CardScreen";
+import HistoryScreen from "./screens/HistoryScreen";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -38,7 +38,7 @@ export default function App() {
       >
         <Tab.Screen
           name="Card"
-          component={WelcomeScreen}
+          component={CardScreen}
           options={{
             tabBarLabel: "Card",
             tabBarColor: colours.primaryThick,
@@ -49,7 +49,7 @@ export default function App() {
         />
         <Tab.Screen
           name="History"
-          component={HomeScreen}
+          component={HistoryScreen}
           listeners={() => handleChange()}
           options={{
             tabBarLabel: "History",
