@@ -9,61 +9,26 @@ import {
   Text,
   Alert,
 } from "react-native";
+import colours from "../res/colours";
+import colors from "../res/colours";
 
 function BottomNavigator() {
   const toggleOpen = () => {};
 
   return (
-    <View style={{ flex: 1, flexDirection: "column", backgroundColor: "grey" }}>
-      <View
-        style={{
-          position: "absolute",
-          alignSelf: "center",
-          backgroundColor: "grey",
-          width: 70,
-          height: 70,
-          borderRadius: 35,
-          bottom: 35,
-          zIndex: 10,
-        }}
-      >
+    <View style={styles.botContainer}>
+      <View style={styles.btnCircle}>
         <TouchableWithoutFeedback onPress={() => toggleOpen()}>
           <View style={[styles.button, styles.actionBtn]}>
             <Image
               style={{ width: 60, height: 60 }}
               resizeMode="contain"
-              source={{
-                uri:
-                  "https://icon-library.net/images/android-plus-icon/android-plus-icon-0.jpg",
-              }}
+              source={require("../assets/plusIcon.png")}
             />
           </View>
         </TouchableWithoutFeedback>
       </View>
-      <View
-        style={{
-          position: "absolute",
-          backgroundColor: "white",
-          border: 2,
-          radius: 3,
-          shadowOpacity: 0.3,
-          shadowRadius: 3,
-          shadowOffset: {
-            height: 3,
-            width: 3,
-          },
-          x: 0,
-          y: 0,
-          style: { marginVertical: 5 },
-          bottom: 0,
-          width: "100%",
-          height: 70,
-          flexDirection: "row",
-          justifyContent: "space-between",
-          paddingVertical: 10,
-          paddingHorizontal: 25,
-        }}
-      >
+      <View style={styles.bar}>
         <View
           style={{
             flexDirection: "column",
@@ -96,35 +61,6 @@ function BottomNavigator() {
           style={{
             flexDirection: "column",
             alignItems: "center",
-            justifyContent: "center",
-            marginStart: 30,
-          }}
-        >
-          <TouchableOpacity
-            onPress={() => {
-              Alert.alert("click");
-            }}
-          >
-            <Image
-              style={{ width: 30, height: 30 }}
-              source={{
-                uri:
-                  "http://simpleicon.com/wp-content/uploads/active-search.png",
-              }}
-              onPress={() => {
-                Alert.alert("click");
-              }}
-            />
-          </TouchableOpacity>
-          <Text style={{ justifyContent: "center", alignItems: "center" }}>
-            search{" "}
-          </Text>
-        </View>
-
-        <View
-          style={{
-            flexDirection: "column",
-            alignItems: "center",
             justifyContent: "space-between",
             marginStart: 85,
           }}
@@ -146,37 +82,16 @@ function BottomNavigator() {
               containerStyle={{ marginHorizontal: 16 }}
             />
           </TouchableOpacity>
-          <Text style={{ justifyContent: "center", alignItems: "center" }}>
-            Menu{" "}
-          </Text>
-        </View>
-        <View
-          style={{
-            flexDirection: "column",
-            alignItems: "center",
-            justifyContent: "flex-end",
-          }}
-        >
-          <TouchableOpacity
-            onPress={() => {
-              Alert.alert("click");
+          <Text
+            style={{
+              justifyContent: "center",
+              alignItems: "center",
+              color: "black",
             }}
           >
-            <Image
-              source={{
-                uri:
-                  "https://serfob.s3.amazonaws.com/media/settings-icon-png82e-4c02-9f9a-51398c8713ae.png",
-              }}
-              style={{ marginHorizontal: 16, width: 30, height: 30 }}
-              containerStyle={{ marginHorizontal: 16 }}
-            />
-          </TouchableOpacity>
-          <Text style={{ justifyContent: "center", alignItems: "center" }}>
-            Setting{" "}
+            Menu
           </Text>
         </View>
-
-        {/* </View> */}
       </View>
     </View>
   );
@@ -184,14 +99,9 @@ function BottomNavigator() {
 
 const styles = StyleSheet.create({
   botContainer: {
-    position: "absolute",
-    alignSelf: "center",
-    backgroundColor: "grey",
-    width: 70,
-    height: 70,
-    borderRadius: 35,
-    bottom: 35,
-    zIndex: 10,
+    flex: 1,
+    flexDirection: "column",
+    backgroundColor: colours.bg,
   },
   MainContainer: {
     flex: 1,
@@ -217,11 +127,34 @@ const styles = StyleSheet.create({
     shadowOpacity: 5.0,
   },
   actionBtn: {
-    backgroundColor: "#1E90FF",
+    backgroundColor: colours.primaryThick,
     textShadowOffset: { width: 5, height: 5 },
     textShadowRadius: 10,
     borderWidth: 2,
     borderColor: "#fff",
+  },
+  btnCircle: {
+    position: "absolute",
+    alignSelf: "center",
+    backgroundColor: colours.bg,
+    width: 70,
+    height: 70,
+    borderRadius: 35,
+    bottom: 35,
+    zIndex: 10,
+  },
+  bar: {
+    position: "absolute",
+    backgroundColor: colours.primaryThick,
+    shadowOpacity: 0.3,
+    shadowRadius: 3,
+    bottom: 0,
+    width: "100%",
+    height: 70,
+    flexDirection: "row",
+    justifyContent: "space-evenly",
+    paddingVertical: 10,
+    paddingHorizontal: 25,
   },
 });
 
