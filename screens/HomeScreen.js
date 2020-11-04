@@ -1,9 +1,9 @@
 import React from "react";
 import { StyleSheet, View, Text } from "react-native";
-import BottomNavigator from "../components/bottomNav";
+import { NavigationContainer } from "@react-navigation/native";
 
 function HomeScreen() {
-  return <BottomNavigator />;
+  return <View></View>;
 }
 
 const styles = StyleSheet.create({});
