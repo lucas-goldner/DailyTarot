@@ -3,12 +3,7 @@ import { StyleSheet, View, Text } from "react-native";
 import BottomNavigator from "../components/bottomNav";
 
 function HomeScreen() {
-  return (
-    <View>
-      hey
-      <BottomNavigator />
-    </View>
-  );
+  return <BottomNavigator />;
 }
 
 const styles = StyleSheet.create({});
