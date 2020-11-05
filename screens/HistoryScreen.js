@@ -4,7 +4,11 @@ import { NavigationContainer } from "@react-navigation/native";
 import colours from "../res/colours";
 
 function HistoryScreen() {
-  return <View style={styles.background}></View>;
+  return (
+    <View style={styles.background}>
+      <Image source={require("../assets/curve.svg")} />
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({

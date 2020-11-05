@@ -5,13 +5,13 @@ import colours from "../res/colours";
 const cards = [
   {
     title: "swords10",
-    image: require("../assets/tarot/swords10.jpg"),
+    imageTarot: require("../assets/tarot/swords10.jpg"),
     description:
       "The 10th of the swords cards The 10th of the swords cards The 10th of the swords cards The 10th of the swords cards The 10th of the swords cards The 10th of the swords cards The 10th of the swords cards The 10th of the swords cards",
   },
   {
     title: "swords11",
-    image: require("../assets/tarot/swords11.jpg"),
+    imageTarot: require("../assets/tarot/swords11.jpg"),
     description: "The 11th of the swords cards",
   },
 ];
@@ -25,7 +25,7 @@ function CardScreen(props) {
         <Image
           style={styles.imgCard}
           resizeMode="contain"
-          source={cards[randomIndex].image}
+          source={cards[randomIndex].imageTarot}
         ></Image>
         <Text adjustsFontSizeToFit style={styles.cardTitle}>
           {cards[randomIndex].title}
@@ -55,6 +55,8 @@ const styles = StyleSheet.create({
   },
   cardTitle: {
     fontSize: 20,
+    color: colours.secondaryThick,
+    fontWeight: "bold",
   },
   imgCard: {
     height: 450,
@@ -93,7 +95,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.5,
     shadowRadius: 26.0,
-    elevation: 10,
+    elevation: 5,
   },
   Card3: {
     height: "75%",
@@ -110,7 +112,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.5,
     shadowRadius: 26.0,
-    elevation: 5,
+    elevation: 1,
   },
 });
 
