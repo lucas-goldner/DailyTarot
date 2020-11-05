@@ -12,8 +12,11 @@ const Tab = createMaterialBottomTabNavigator();
 export default function App() {
   const [actionColourChange, setActionColourChange] = useState(false);
   const toggleOpen = () => {};
-  const handleChange = () => {
-    setActionColourChange((actionColourChange) => !actionColourChange);
+  const setActionColourChangeToTrue = () => {
+    setActionColourChange(true);
+  };
+  const setActionColourChangeToFalse = () => {
+    setActionColourChange(false);
   };
 
   const actnButStyle = StyleSheet.create({
@@ -39,6 +42,7 @@ export default function App() {
         <Tab.Screen
           name="Card"
           component={CardScreen}
+          listeners={() => setActionColourChangeToFalse()}
           options={{
             tabBarLabel: "Card",
             tabBarColor: colours.primaryThick,
@@ -50,7 +54,7 @@ export default function App() {
         <Tab.Screen
           name="History"
           component={HistoryScreen}
-          listeners={() => handleChange()}
+          listeners={() => setActionColourChangeToTrue()}
           options={{
             tabBarLabel: "History",
             tabBarColor: colours.secondaryThick,
