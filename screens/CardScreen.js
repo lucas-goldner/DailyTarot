@@ -51,7 +51,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.58,
     shadowRadius: 16.0,
-    elevation: 1,
+    elevation: 12,
   },
   rCard: {
     height: 300,
