@@ -1,11 +1,13 @@
 import React from "react";
 import { Image, StyleSheet, View, Text } from "react-native";
+import colours from "../res/colours";
 
 const cards = [
   {
     title: "swords10",
     image: require("../assets/tarot/swords10.jpg"),
-    description: "The 10th of the swords cards",
+    description:
+      "The 10th of the swords cards The 10th of the swords cards The 10th of the swords cards The 10th of the swords cards The 10th of the swords cards The 10th of the swords cards The 10th of the swords cards The 10th of the swords cards",
   },
   {
     title: "swords11",
@@ -19,16 +21,25 @@ function CardScreen(props) {
 
   return (
     <View style={styles.background}>
-      <View style={styles.cardContainer}>
+      <View style={styles.Card}>
         <Image
-          style={styles.card}
+          style={styles.imgCard}
           resizeMode="contain"
           source={cards[randomIndex].image}
-        />
+        ></Image>
+        <Text adjustsFontSizeToFit style={styles.cardTitle}>
+          {cards[randomIndex].title}
+        </Text>
+        <Text
+          adjustsFontSizeToFit
+          numberOfLines={5}
+          style={styles.cardDescription}
+        >
+          {cards[randomIndex].description}
+        </Text>
       </View>
-      <Text>{cards[randomIndex].title}</Text>
-      <Text>{cards[randomIndex].description}</Text>
-      <Text>{randomIndex}</Text>
+      <View style={styles.Card2}></View>
+      <View style={styles.Card3}></View>
     </View>
   );
 }
@@ -39,24 +50,67 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
   },
-  card: {
-    width: 220,
-    height: 400,
+  cardDescription: {
+    marginStart: 10,
   },
-  cardContainer: {
+  cardTitle: {
+    fontSize: 20,
+  },
+  imgCard: {
+    height: 450,
+    width: "70%",
+  },
+  Card: {
+    height: "75%",
+    backgroundColor: colours.bg,
+    width: 350,
+    borderColor: "black",
+    borderRadius: 20,
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 12,
+      height: 10,
     },
-    shadowOpacity: 0.58,
-    shadowRadius: 16.0,
-    elevation: 12,
+    shadowOpacity: 0.5,
+    shadowRadius: 26.0,
+    elevation: 10,
+    zIndex: 100,
+    justifyContent: "center",
+    alignItems: "center",
   },
-  rCard: {
-    height: 300,
+  Card2: {
+    height: "75%",
+    backgroundColor: colours.primary,
+    width: 325,
+    borderRadius: 20,
+    position: "absolute",
+    top: 80,
+    zIndex: 50,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 26.0,
+    elevation: 10,
+  },
+  Card3: {
+    height: "75%",
+    backgroundColor: colours.primaryThick,
     width: 300,
-    backgroundColor: "black",
+    borderRadius: 20,
+    position: "absolute",
+    top: 65,
+    zIndex: -10,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.5,
+    shadowRadius: 26.0,
+    elevation: 5,
   },
 });
 
