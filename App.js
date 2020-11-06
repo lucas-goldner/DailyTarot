@@ -6,6 +6,8 @@ import {
   TouchableOpacity,
   Image,
   Alert,
+  Modal,
+  TouchableHighlight,
 } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
@@ -13,6 +15,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import colours from "./res/colours";
 import CardScreen from "./screens/CardScreen";
 import HistoryScreen from "./screens/HistoryScreen";
+import ModalScreen from "./components/Modal";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -31,15 +34,8 @@ const cards = [
   },
 ];
 
-function ModalScreen() {
-  return (
-    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-      <Text style={{ fontSize: 30 }}>This is a modal!</Text>
-    </View>
-  );
-}
-
 export default function App() {
+  const [modalVisible, setModalVisible] = useState(false);
   const [actionColourChange, setActionColourChange] = useState(false);
   const randomIndex = Math.round(Math.random() * 1);
   const togglePost = () => {};
@@ -103,7 +99,7 @@ export default function App() {
       </Tab.Navigator>
       <View style={styles.btnCircle}>
         <View style={[styles.button, actnButStyle.actBtn]}>
-          <TouchableOpacity onPress={() => togglePost()}>
+          <TouchableOpacity onPress={() => setModalVisible(true)}>
             <Image
               style={{ width: 60, height: 60 }}
               resizeMode="contain"
@@ -112,11 +108,46 @@ export default function App() {
           </TouchableOpacity>
         </View>
       </View>
+      <View>
+        <Modal
+          animationType="slide"
+          transparent={true}
+          visible={modalVisible}
+          onRequestClose={() => {
+            setModalVisible(false);
+          }}
+        >
+          <View style={styles.modalView}>
+            <ModalScreen />
+          </View>
+        </Modal>
+      </View>
     </NavigationContainer>
   );
 }
 
 const styles = StyleSheet.create({
+  topBar: {
+    display: "flex",
+    flexDirection: "row",
+  },
+  modalView: {
+    width: "100%",
+    height: "100%",
+    backgroundColor: "white",
+    borderTopStartRadius: 50,
+    borderTopEndRadius: 50,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
   button: {
     width: 60,
     height: 60,
@@ -143,5 +174,10 @@ const styles = StyleSheet.create({
     borderRadius: 35,
     bottom: 10,
     zIndex: 10,
+  },
+  modalTitle: {
+    fontSize: 20,
+    color: colours.secondaryThick,
+    fontWeight: "bold",
   },
 });
