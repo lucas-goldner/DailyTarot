@@ -15,7 +15,7 @@ import colours from "./res/colours";
 import CardScreen from "./screens/CardScreen";
 import HistoryScreen from "./screens/HistoryScreen";
 import ModalScreen from "./components/Modal";
-import { render } from "react-dom";
+import SettingsScreen from "./components/Settings";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -34,25 +34,9 @@ const cards = [
   },
 ];
 
-function HistoryScreenPlusTopBar() {
-  return (
-    <View style={{ backgroundColor: colours.primary }}>
-      <View style={styles.historyTopbar}>
-        <Text style={styles.historyTitle}>Your Entries</Text>
-        <MaterialCommunityIcons
-          name="settings-outline"
-          size={24}
-          color={colours.secondaryThick}
-          onPress={() => Alert.alert("heys")}
-        />
-      </View>
-      <HistoryScreen />
-    </View>
-  );
-}
-
 export default function App() {
   const [modalVisible, setModalVisible] = useState(false);
+  const [settingsVisible, setSettingsVisible] = useState(false);
   const [actionColourChange, setActionColourChange] = useState(false);
   const randomIndex = Math.round(Math.random() * 1);
   const togglePost = () => {};
@@ -87,7 +71,41 @@ export default function App() {
         />
         <Tab.Screen
           name="History"
-          component={HistoryScreenPlusTopBar}
+          children={() => (
+            <View style={{ backgroundColor: colours.primary }}>
+              <View style={styles.historyTopbar}>
+                <Text style={styles.historyTitle}>Your Entries</Text>
+                <MaterialCommunityIcons
+                  name="settings-outline"
+                  size={24}
+                  color={colours.secondaryThick}
+                  onPress={() => setSettingsVisible(true)}
+                />
+              </View>
+              <HistoryScreen />
+              <Modal
+                animationType="slide"
+                transparent={true}
+                visible={settingsVisible}
+                onRequestClose={() => {
+                  setSettingsVisible(false);
+                }}
+              >
+                <View style={styles.modalView}>
+                  <View style={styles.topbar}>
+                    <MaterialCommunityIcons
+                      name="arrow-left"
+                      size={30}
+                      color={colours.secondaryThick}
+                      onPress={() => setSettingsVisible(false)}
+                    />
+                    <Text style={styles.modalTitle}>Settings</Text>
+                  </View>
+                  <SettingsScreen />
+                </View>
+              </Modal>
+            </View>
+          )}
           listeners={() => setActionColourChangeToTrue()}
           options={{
             tabBarLabel: "History",

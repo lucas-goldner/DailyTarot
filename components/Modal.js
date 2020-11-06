@@ -14,7 +14,6 @@ import colours from "../res/colours";
 function BottomPopup({ cards, randomIndex }) {
   const [text, setText] = useState("");
   const [textareaHeight, setTextareaHeight] = useState("");
-
   return (
     <View style={styles.modalScreen}>
       <View style={styles.cardContainer}>
