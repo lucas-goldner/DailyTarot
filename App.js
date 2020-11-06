@@ -121,14 +121,14 @@ export default function App() {
             <View style={styles.topbar}>
               <MaterialCommunityIcons
                 name="arrow-left"
-                size={24}
+                size={30}
                 color={colours.secondaryThick}
                 onPress={() => setModalVisible(false)}
               />
               <Text style={styles.modalTitle}>Create Entry</Text>
               <MaterialCommunityIcons
                 name="content-save"
-                size={24}
+                size={30}
                 color={colours.secondaryThick}
                 onPress={() => Alert.alert("Saved Entry")}
               />

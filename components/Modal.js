@@ -14,7 +14,7 @@ function BottomPopup({ cards, randomIndex }) {
           source={cards[randomIndex].imageTarot}
         />
         <View style={styles.cardInfo}>
-          <Text> {cards[randomIndex].title}</Text>
+          <Text style={styles.modalTitle}>{cards[randomIndex].title}</Text>
           <Text>{cards[randomIndex].description}</Text>
         </View>
       </View>
@@ -31,7 +31,14 @@ function BottomPopup({ cards, randomIndex }) {
 }
 
 const styles = StyleSheet.create({
-  cardInfo: {},
+  modalTitle: {
+    fontSize: 20,
+    color: colours.secondaryThick,
+    fontWeight: "bold",
+  },
+  cardInfo: {
+    marginStart: 5,
+  },
   imgCard: {
     height: 200,
     width: 80,
