@@ -45,18 +45,6 @@ export default function App() {
     setActionColourChange(false);
   };
 
-  const actnButStyle = StyleSheet.create({
-    actBtn: {
-      backgroundColor: !actionColourChange
-        ? colours.secondaryThick
-        : colours.primaryThick,
-      textShadowOffset: { width: 5, height: 5 },
-      textShadowRadius: 10,
-      borderWidth: 0,
-      borderColor: colours.bg,
-    },
-  });
-
   return (
     <NavigationContainer>
       <Tab.Navigator
@@ -97,7 +85,15 @@ export default function App() {
         />
       </Tab.Navigator>
       <View style={styles.btnCircle}>
-        <View style={[styles.button, actnButStyle.actBtn]}>
+        <View
+          style={{
+            ...styles.button,
+            ...styles.actBtn,
+            backgroundColor: !actionColourChange
+              ? colours.secondaryThick
+              : colours.primaryThick,
+          }}
+        >
           <TouchableOpacity onPress={() => setModalVisible(true)}>
             <Image
               style={{ width: 60, height: 60 }}
@@ -116,7 +112,14 @@ export default function App() {
             setModalVisible(false);
           }}
         >
-          <View style={styles.modalBG}></View>
+          <View
+            style={{
+              ...styles.modalBG,
+              backgroundColor: actionColourChange
+                ? colours.bg
+                : colours.secondary,
+            }}
+          ></View>
           <View style={styles.modalView}>
             <View style={styles.topbar}>
               <MaterialCommunityIcons
@@ -142,6 +145,12 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  actBtn: {
+    textShadowOffset: { width: 5, height: 5 },
+    textShadowRadius: 10,
+    borderWidth: 0,
+    borderColor: colours.bg,
+  },
   modalBG: {
     position: "absolute",
     height: "100%",
