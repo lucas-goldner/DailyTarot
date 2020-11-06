@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
       height: 10,
     },
     shadowOpacity: 0.2,
-    shadowRadius: 30.0,
+    shadowRadius: 10.0,
   },
 });
 
