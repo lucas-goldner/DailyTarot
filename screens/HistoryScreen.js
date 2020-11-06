@@ -11,13 +11,66 @@ import {
 import colours from "../res/colours";
 import Svg, { Path } from "react-native-svg";
 import Entry from "../components/Entry";
+import ToggleSwitch from "rn-toggle-switch";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
+
+class Toggle extends ToggleSwitch {
+  onDragEnd = (e) => {
+    const { contentOffset } = e.nativeEvent;
+    if (contentOffset.x > this.props.width / 2) {
+      this.scrollRef.scrollToEnd();
+      this.updateState(false);
+    } else {
+      this.scrollRef.scrollTo({ x: 0, y: 0, animated: true });
+      this.updateState(true);
+    }
+  };
+
+  onDragStart = () => {};
+}
 
 function HistoryScreen(props) {
+  //True cards false calender
+  const [viewType, setviewType] = useState(true);
+  const handleChange = (val) => {
+    setviewType(val);
+  };
   return (
     <View>
       <View style={styles.background}>
-        <ScrollView scrollEventThrottle={16}>
+        <View style={styles.historyTopbar}>
           <Text style={styles.historyTitle}>Your Entries</Text>
+          <Toggle
+            text={{
+              on: "Cards",
+              off: "Calender",
+              activeTextColor: colours.secondaryThick,
+              inactiveTextColor: colours.primaryThick,
+            }}
+            textStyle={{ fontWeight: "bold", fontSize: 15 }}
+            color={{
+              indicator: "white",
+              active: colours.primary,
+              inactive: colours.secondary,
+              activeBorder: colours.secondaryThick,
+              inactiveBorder: colours.primaryThick,
+            }}
+            active={true}
+            disabled={false}
+            width={80}
+            radius={20}
+            onValueChange={(val) => {
+              handleChange(val);
+            }}
+          />
+          <MaterialCommunityIcons
+            name="settings-outline"
+            size={24}
+            color={colours.secondaryThick}
+          />
+        </View>
+
+        <ScrollView scrollEventThrottle={16}>
           <View style={styles.entryList}>
             <ScrollView
               horizontal={true}
@@ -50,12 +103,18 @@ function HistoryScreen(props) {
 }
 
 const styles = StyleSheet.create({
+  historyTopbar: {
+    marginTop: 50,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    width: "100%",
+    alignItems: "baseline",
+  },
   entryList: {
     marginTop: 20,
     height: 650,
   },
   historyTitle: {
-    paddingTop: 50,
     fontSize: 20,
     color: colours.secondaryThick,
     fontWeight: "bold",
