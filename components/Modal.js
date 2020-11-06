@@ -2,15 +2,10 @@ import React, { useState } from "react";
 import { StyleSheet, View, Text } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-function BottomPopup() {
+function BottomPopup({ cards, randomIndex }) {
   return (
     <View style={styles.modalScreen}>
-      <View style={styles.topbar}>
-        <MaterialCommunityIcons name="arrow-left" size={24} color="black" />
-        <Text>Create Post</Text>
-        <MaterialCommunityIcons name="content-save" size={24} color="black" />
-      </View>
-      <View>
+      <View style={styles.cardContainer}>
         <Text>hey</Text>
         <Text>hey</Text>
       </View>
@@ -20,11 +15,15 @@ function BottomPopup() {
 
 const styles = StyleSheet.create({
   modalScreen: {
-    alignItems: "center",
+    flex: 1,
+    width: "100%",
   },
-  topbar: {
-    display: "flex",
+  cardContainer: {
+    flex: 1,
+    width: "100%",
     flexDirection: "row",
+    justifyContent: "space-around",
+    alignSelf: "center",
   },
 });
 

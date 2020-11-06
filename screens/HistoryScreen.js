@@ -23,7 +23,7 @@ function HistoryScreen(props) {
   return (
     <>
       <View style={styles.background}>
-        <Text>Hey</Text>
+        <Text>Create Post</Text>
       </View>
     </>
   );

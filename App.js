@@ -118,7 +118,21 @@ export default function App() {
           }}
         >
           <View style={styles.modalView}>
-            <ModalScreen />
+            <View style={styles.topbar}>
+              <MaterialCommunityIcons
+                name="arrow-left"
+                size={24}
+                color="black"
+                onPress={() => setModalVisible(false)}
+              />
+              <Text>Create Post</Text>
+              <MaterialCommunityIcons
+                name="content-save"
+                size={24}
+                color="black"
+              />
+            </View>
+            <ModalScreen cards={cards} randomIndex={randomIndex} />
           </View>
         </Modal>
       </View>
@@ -127,9 +141,11 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
-  topBar: {
-    display: "flex",
+  topbar: {
+    flex: 1,
     flexDirection: "row",
+    justifyContent: "space-around",
+    width: "100%",
   },
   modalView: {
     width: "100%",
