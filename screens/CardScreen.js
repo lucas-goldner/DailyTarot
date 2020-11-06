@@ -73,14 +73,14 @@ const styles = StyleSheet.create({
     top: 300,
     left: -10,
     zIndex: 90,
-    elevation: 90,
+    elevation: -10,
   },
   backgroundCirlces2: {
     position: "absolute",
     top: 280,
     left: 10,
     zIndex: 90,
-    elevation: 90,
+    elevation: -10,
   },
   background: {
     flex: 1,

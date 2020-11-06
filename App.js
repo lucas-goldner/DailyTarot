@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Text, View, StyleSheet, TouchableOpacity, Image } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  TouchableOpacity,
+  Image,
+  Alert,
+} from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
@@ -24,10 +31,18 @@ const cards = [
   },
 ];
 
+function ModalScreen() {
+  return (
+    <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+      <Text style={{ fontSize: 30 }}>This is a modal!</Text>
+    </View>
+  );
+}
+
 export default function App() {
   const [actionColourChange, setActionColourChange] = useState(false);
   const randomIndex = Math.round(Math.random() * 1);
-  const toggleOpen = () => {};
+  const togglePost = () => {};
   const setActionColourChangeToTrue = () => {
     setActionColourChange(true);
   };
@@ -88,7 +103,7 @@ export default function App() {
       </Tab.Navigator>
       <View style={styles.btnCircle}>
         <View style={[styles.button, actnButStyle.actBtn]}>
-          <TouchableOpacity onPress={() => toggleOpen()}>
+          <TouchableOpacity onPress={() => togglePost()}>
             <Image
               style={{ width: 60, height: 60 }}
               resizeMode="contain"
