@@ -1,6 +1,8 @@
 import React from "react";
-import { Image, StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Image } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
 import colours from "../res/colours";
+import Svg, { Path } from "react-native-svg";
 
 const cards = [
   {
@@ -16,30 +18,45 @@ const cards = [
   },
 ];
 
-function CardScreen(props) {
+function CardScreen() {
   const randomIndex = Math.round(Math.random() * 1);
-
   return (
-    <View style={styles.background}>
-      <View style={styles.Card}>
-        <Image
-          style={styles.imgCard}
-          resizeMode="contain"
-          source={cards[randomIndex].imageTarot}
-        ></Image>
-        <Text adjustsFontSizeToFit style={styles.cardTitle}>
-          {cards[randomIndex].title}
-        </Text>
-        <Text
-          adjustsFontSizeToFit
-          numberOfLines={5}
-          style={styles.cardDescription}
-        >
-          {cards[randomIndex].description}
-        </Text>
+    <View>
+      <View style={styles.background}>
+        <View style={styles.Card}>
+          <Image
+            style={styles.imgCard}
+            resizeMode="contain"
+            source={cards[randomIndex].imageTarot}
+          ></Image>
+          <Text adjustsFontSizeToFit style={styles.cardTitle}>
+            {cards[randomIndex].title}
+          </Text>
+          <Text
+            adjustsFontSizeToFit
+            numberOfLines={5}
+            style={styles.cardDescription}
+          >
+            {cards[randomIndex].description}
+          </Text>
+        </View>
+        <View style={styles.Card2}></View>
+        <View style={styles.Card3}></View>
       </View>
-      <View style={styles.Card2}></View>
-      <View style={styles.Card3}></View>
+      <Svg
+        style={styles.bgLayer}
+        data-name="BGLayer"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 500 120"
+        preserveAspectRatio="none"
+      >
+        <Path
+          d="M741,116.23C291,117.43,0,27.57,0,6V120H1200V6C1200,27.93,1186.4,119.83,741,116.23Z"
+          class="shape-fill"
+          fill="#5E4FA2"
+          fill-opacity="1"
+        ></Path>
+      </Svg>
     </View>
   );
 }
@@ -49,6 +66,15 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    position: "absolute",
+    zIndex: 100,
+    top: 0,
+    alignSelf: "center",
+    elevation: 100,
+    height: "100%",
+  },
+  bgLayer: {
+    transform: [{ rotateZ: "180deg" }],
   },
   cardDescription: {
     marginStart: 10,
@@ -63,6 +89,7 @@ const styles = StyleSheet.create({
     width: "70%",
   },
   Card: {
+    marginTop: "20%",
     height: "75%",
     backgroundColor: colours.bg,
     width: 350,
@@ -81,7 +108,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   Card2: {
-    height: "75%",
+    marginTop: "10%",
+    height: "70%",
     backgroundColor: colours.primary,
     width: 325,
     borderRadius: 20,
@@ -98,7 +126,8 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   Card3: {
-    height: "75%",
+    marginTop: "10%",
+    height: "65%",
     backgroundColor: colours.primaryThick,
     width: 300,
     borderRadius: 20,
