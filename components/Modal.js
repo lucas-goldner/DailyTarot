@@ -1,10 +1,20 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text, Image, TextInput } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  TextInput,
+  KeyboardAvoidingView,
+} from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { color } from "react-native-reanimated";
+import InputScrollView from "react-native-input-scroll-view";
 import colours from "../res/colours";
 
 function BottomPopup({ cards, randomIndex }) {
+  const [text, setText] = useState("");
+  const [textareaHeight, setTextareaHeight] = useState("");
+
   return (
     <View style={styles.modalScreen}>
       <View style={styles.cardContainer}>
@@ -18,14 +28,19 @@ function BottomPopup({ cards, randomIndex }) {
           <Text>{cards[randomIndex].description}</Text>
         </View>
       </View>
-      <TextInput
-        allowFontScaling
-        disableFullscreenUI
-        maxFontSizeMultiplier={5}
-        multiline={true}
-        textAlignVertical="top"
-        style={styles.noteInput}
-      ></TextInput>
+      <InputScrollView>
+        <TextInput
+          allowFontScaling
+          disableFullscreenUI
+          maxFontSizeMultiplier={5}
+          multiline={true}
+          numberOfLines={10}
+          textAlignVertical="top"
+          style={styles.noteInput}
+          onChangeText={(e) => setText(e.target)}
+          onContentSizeChange={(e) => setTextareaHeight(e.target)}
+        />
+      </InputScrollView>
     </View>
   );
 }

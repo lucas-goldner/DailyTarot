@@ -4741,6 +4741,13 @@ react-native-gesture-handler@~1.7.0:
     invariant "^2.2.4"
     prop-types "^15.7.2"
 
+react-native-input-scroll-view@^1.11.0:
+  version "1.11.0"
+  resolved "https://registry.yarnpkg.com/react-native-input-scroll-view/-/react-native-input-scroll-view-1.11.0.tgz#05ca068c4093c7c92a6412c0a05a9d76166976ad"
+  integrity sha512-KCIR3D8uug7Mef2vsjVkVnVr3DvPrSXRPz+C/DNHawXqA4WjmzqABrXjbZOGp+JwSHFD6U2ZVX9GfLgAOs1/7g==
+  dependencies:
+    prop-types "^15.7.2"
+
 react-native-paper@^4.3.0:
   version "4.3.0"
   resolved "https://registry.yarnpkg.com/react-native-paper/-/react-native-paper-4.3.0.tgz#07e3e2fa60bbbf898179f10dc74b985a22682152"
