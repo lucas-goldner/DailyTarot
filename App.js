@@ -9,8 +9,24 @@ import HistoryScreen from "./screens/HistoryScreen";
 
 const Tab = createMaterialBottomTabNavigator();
 
+const cards = [
+  {
+    title: "The Fool",
+    imageTarot: require("./assets/tarot/major00.jpg"),
+    description:
+      "The Fool also represents the complete faith that life is good and worthy of trust. In readings, the Fool can signal a new beginning or change of direction - one that will guide you onto a path of adventure, wonder and personal growth.",
+  },
+  {
+    title: "The Magician",
+    imageTarot: require("./assets/tarot/major01.jpg"),
+    description:
+      "The Magician is the archetype of the active, masculine principle - the ultimate achiever. He symbolizes the power to tap universal forces and use them for creative purposes. He is not afraid to act and believes in himself.",
+  },
+];
+
 export default function App() {
   const [actionColourChange, setActionColourChange] = useState(false);
+  const randomIndex = Math.round(Math.random() * 1);
   const toggleOpen = () => {};
   const setActionColourChangeToTrue = () => {
     setActionColourChange(true);
@@ -41,7 +57,9 @@ export default function App() {
       >
         <Tab.Screen
           name="Card"
-          component={CardScreen}
+          children={() => (
+            <CardScreen cards={cards} randomIndex={randomIndex} />
+          )}
           listeners={() => setActionColourChangeToFalse()}
           options={{
             tabBarLabel: "Card",
