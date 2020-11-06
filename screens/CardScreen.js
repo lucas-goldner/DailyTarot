@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
   },
   imgCard: {
-    height: 450,
+    height: 390,
     width: "70%",
   },
   Card: {

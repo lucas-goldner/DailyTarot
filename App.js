@@ -7,7 +7,6 @@ import {
   Image,
   Alert,
   Modal,
-  TouchableHighlight,
 } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createMaterialBottomTabNavigator } from "@react-navigation/material-bottom-tabs";
@@ -117,6 +116,7 @@ export default function App() {
             setModalVisible(false);
           }}
         >
+          <View style={styles.modalBG}></View>
           <View style={styles.modalView}>
             <View style={styles.topbar}>
               <MaterialCommunityIcons
@@ -142,6 +142,13 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  modalBG: {
+    position: "absolute",
+    height: "100%",
+    width: "100%",
+    backgroundColor: colours.secondary,
+    elevation: 1,
+  },
   modalTitle: {
     fontSize: 20,
     color: colours.secondaryThick,

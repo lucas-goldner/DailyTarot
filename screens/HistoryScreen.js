@@ -1,29 +1,51 @@
-import React from "react";
-import { Image, StyleSheet, View, Text } from "react-native";
+import React, { useState, useEffect } from "react";
+import {
+  Image,
+  StyleSheet,
+  View,
+  Text,
+  TextInput,
+  Keyboard,
+} from "react-native";
 import colours from "../res/colours";
 import Svg, { Path, Circle } from "react-native-svg";
 
-const cards = [
-  {
-    title: "swords10",
-    imageTarot: require("../assets/tarot/swords10.jpg"),
-    description:
-      "The 10th of the swords cards The 10th of the swords cards The 10th of the swords cards The 10th of the swords cards The 10th of the swords cards The 10th of the swords cards The 10th of the swords cards The 10th of the swords cards",
-  },
-  {
-    title: "swords11",
-    imageTarot: require("../assets/tarot/swords11.jpg"),
-    description: "The 11th of the swords cards",
-  },
-];
-
 function HistoryScreen(props) {
-  const randomIndex = Math.round(Math.random() * 1);
+  const [isKeyboardVisible, setKeyboardVisible] = useState(false);
+
+  useEffect(() => {
+    const keyboardDidShowListener = Keyboard.addListener(
+      "keyboardDidShow",
+      () => {
+        setKeyboardVisible(true); // or some other action
+      }
+    );
+    const keyboardDidHideListener = Keyboard.addListener(
+      "keyboardDidHide",
+      () => {
+        setKeyboardVisible(false); // or some other action
+      }
+    );
+
+    return () => {
+      keyboardDidHideListener.remove();
+      keyboardDidShowListener.remove();
+    };
+  }, []);
 
   return (
     <>
       <View style={styles.background}>
-        <Text>Create Post</Text>
+        <TextInput></TextInput>
+        {isKeyboardVisible ? (
+          <>
+            <Text>Hi</Text>
+          </>
+        ) : (
+          <>
+            <Text>bye</Text>
+          </>
+        )}
       </View>
     </>
   );
