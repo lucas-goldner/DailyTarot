@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import colours from "../res/colours";
-import Svg, { Path } from "react-native-svg";
+import Svg, { Circle, Path } from "react-native-svg";
 
 const cards = [
   {
@@ -23,6 +23,22 @@ function CardScreen() {
   const randomIndex = Math.round(Math.random() * 1);
   return (
     <View>
+      <Svg
+        style={styles.backgroundCirlces1}
+        height={400}
+        width={300}
+        viewBox="0 0 100 100"
+      >
+        <Circle cx="50" cy="50" r="45" fill="#744590" />
+      </Svg>
+      <Svg
+        style={styles.backgroundCirlces2}
+        height={200}
+        width={200}
+        viewBox="0 0 100 100"
+      >
+        <Circle cx="50" cy="50" r="45" fill="#744590" />
+      </Svg>
       <View style={styles.background}>
         <View style={styles.Card}>
           <Image
@@ -30,7 +46,12 @@ function CardScreen() {
             resizeMode="contain"
             source={cards[randomIndex].imageTarot}
           ></Image>
-          <Text adjustsFontSizeToFit style={styles.cardTitle}>
+          <Text
+            adjustsFontSizeToFit
+            allowFontScaling
+            maxFontSizeMultiplier={5}
+            style={styles.cardTitle}
+          >
             {cards[randomIndex].title}
           </Text>
           <Text
@@ -63,6 +84,20 @@ function CardScreen() {
 }
 
 const styles = StyleSheet.create({
+  backgroundCirlces1: {
+    position: "absolute",
+    top: 300,
+    left: -10,
+    zIndex: 90,
+    elevation: 90,
+  },
+  backgroundCirlces2: {
+    position: "absolute",
+    top: 280,
+    left: 10,
+    zIndex: 90,
+    elevation: 90,
+  },
   background: {
     flex: 1,
     justifyContent: "center",

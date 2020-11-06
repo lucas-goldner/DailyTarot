@@ -1,7 +1,7 @@
 import React from "react";
 import { Image, StyleSheet, View, Text } from "react-native";
 import colours from "../res/colours";
-import Svg, { Path } from "react-native-svg";
+import Svg, { Path, Circle } from "react-native-svg";
 
 const cards = [
   {
