@@ -15,8 +15,15 @@ function Entry() {
           style={styles.entryCard}
         />
       </View>
-      <View style={{ flex: 1, paddingTop: 10 }}>
+      <View>
         <Text style={styles.entryTitle}>Pic One</Text>
+      </View>
+      <View>
+        <Text style={{ padding: 10 }}>
+          DescrDescrDescrDescrDescrDesscrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescr
+          DescrDescrDescrDescrDescrDesscrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescr
+          DescrDescrDescrDescrDescrDesscrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescr
+        </Text>
       </View>
     </View>
   );
@@ -25,6 +32,9 @@ function Entry() {
 const styles = StyleSheet.create({
   entryTitle: {
     alignSelf: "center",
+    fontSize: 20,
+    color: colours.secondaryThick,
+    fontWeight: "bold",
   },
   entryCard: {
     flex: 1,
@@ -33,15 +43,21 @@ const styles = StyleSheet.create({
     resizeMode: "contain",
   },
   entryItem: {
-    height: 130,
-    width: 130,
-    borderWidth: 0.5,
+    height: 600,
+    width: 290,
     borderColor: colours.secondary,
-    marginLeft: 10,
-  },
-  entryList: {
-    height: 130,
-    marginTop: 20,
+    marginLeft: 50,
+    backgroundColor: colours.bg,
+    borderColor: "black",
+    borderRadius: 20,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 26.0,
+    elevation: 10,
   },
 });
 

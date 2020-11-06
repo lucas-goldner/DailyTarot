@@ -113,7 +113,7 @@ const styles = StyleSheet.create({
     shadowRadius: 30.0,
   },
   cardDescription: {
-    textAlign: "center",
+    padding: 10,
     alignSelf: "center",
     fontSize: 15,
   },

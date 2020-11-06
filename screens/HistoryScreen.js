@@ -50,6 +50,10 @@ function HistoryScreen(props) {
 }
 
 const styles = StyleSheet.create({
+  entryList: {
+    marginTop: 20,
+    height: 650,
+  },
   historyTitle: {
     paddingTop: 50,
     fontSize: 20,
