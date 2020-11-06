@@ -15,6 +15,7 @@ import colours from "./res/colours";
 import CardScreen from "./screens/CardScreen";
 import HistoryScreen from "./screens/HistoryScreen";
 import ModalScreen from "./components/Modal";
+import { render } from "react-dom";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -32,6 +33,23 @@ const cards = [
       "The Magician is the archetype of the active, masculine principle - the ultimate achiever. He symbolizes the power to tap universal forces and use them for creative purposes. He is not afraid to act and believes in himself.",
   },
 ];
+
+function HistoryScreenPlusTopBar() {
+  return (
+    <View style={{ backgroundColor: colours.primary }}>
+      <View style={styles.historyTopbar}>
+        <Text style={styles.historyTitle}>Your Entries</Text>
+        <MaterialCommunityIcons
+          name="settings-outline"
+          size={24}
+          color={colours.secondaryThick}
+          onPress={() => Alert.alert("heys")}
+        />
+      </View>
+      <HistoryScreen />
+    </View>
+  );
+}
 
 export default function App() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -69,7 +87,7 @@ export default function App() {
         />
         <Tab.Screen
           name="History"
-          component={HistoryScreen}
+          component={HistoryScreenPlusTopBar}
           listeners={() => setActionColourChangeToTrue()}
           options={{
             tabBarLabel: "History",
@@ -145,6 +163,20 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  historyTopbar: {
+    backgroundColor: colours.primary,
+    marginTop: 50,
+    flexDirection: "row",
+    justifyContent: "space-around",
+    width: "100%",
+    alignItems: "center",
+  },
+  historyTitle: {
+    fontSize: 20,
+    color: colours.secondaryThick,
+    fontWeight: "bold",
+    alignSelf: "center",
+  },
   actBtn: {
     textShadowOffset: { width: 5, height: 5 },
     textShadowRadius: 10,

@@ -1,19 +1,10 @@
 import React, { useState, useEffect } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  TextInput,
-  Keyboard,
-  ScrollView,
-  Image,
-} from "react-native";
+import { StyleSheet, View, Text, ScrollView, Alert } from "react-native";
 import colours from "../res/colours";
 import Svg, { Path } from "react-native-svg";
 import Entry from "../components/Entry";
 import ToggleSwitch from "rn-toggle-switch";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import MasterCalendar from "../components/Calendar";
 
 class Toggle extends ToggleSwitch {
   onDragEnd = (e) => {
@@ -39,50 +30,6 @@ function HistoryScreen(props) {
   return (
     <View>
       <View style={styles.background}>
-        <View style={styles.historyTopbar}>
-          <Text style={styles.historyTitle}>Your Entries</Text>
-          {/*           
-          Uncomment when calendar should come back
-
-          <Toggle
-            text={{
-              on: "Cards",
-              off: "Calender",
-              activeTextColor: colours.secondaryThick,
-              inactiveTextColor: colours.primaryThick,
-            }}
-            textStyle={{ fontWeight: "bold", fontSize: 15 }}
-            color={{
-              indicator: "white",
-              active: colours.primary,
-              inactive: colours.secondary,
-              activeBorder: colours.secondaryThick,
-              inactiveBorder: colours.primaryThick,
-            }}
-            active={true}
-            disabled={false}
-            width={80}
-            radius={20}
-            onValueChange={(val) => {
-              handleChange(val);
-            }}
-          />*/}
-
-          <MaterialCommunityIcons
-            name="settings-outline"
-            size={24}
-            color={colours.secondaryThick}
-          />
-        </View>
-        {/*        {viewType ? (
-          <>
-
-        ) : (
-          <>
-            <MasterCalendar />
-          </>
-        )}
-        */}
         <ScrollView scrollEventThrottle={16}>
           <View style={styles.entryList}>
             <ScrollView
@@ -101,13 +48,13 @@ function HistoryScreen(props) {
         style={styles.bgLayer}
         data-name="BGLayer"
         xmlns="http://www.w3.org/2000/svg"
-        viewBox="0 0 500 120"
+        viewBox="0 0 400 120"
         preserveAspectRatio="none"
       >
         <Path
           d="M741,116.23C291,117.43,0,27.57,0,6V120H1200V6C1200,27.93,1186.4,119.83,741,116.23Z"
           class="shape-fill"
-          fill="#bae3f6"
+          fill="rgb(242, 242, 242)"
           fill-opacity="1"
         ></Path>
       </Svg>
@@ -121,7 +68,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     width: "100%",
-    alignItems: "baseline",
+    alignItems: "center",
   },
   entryList: {
     marginTop: 20,
@@ -145,7 +92,7 @@ const styles = StyleSheet.create({
     height: "100%",
   },
   bgLayer: {
-    transform: [{ rotateZ: "180deg" }, { scaleX: -1 }],
+    transform: [{ scaleX: -1 }],
     borderColor: "black",
     borderRadius: 20,
     shadowColor: "#000",
