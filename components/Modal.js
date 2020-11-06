@@ -34,6 +34,7 @@ function BottomPopup({ cards, randomIndex }) {
           disableFullscreenUI
           maxFontSizeMultiplier={5}
           multiline={true}
+          autoFocus
           numberOfLines={10}
           textAlignVertical="top"
           style={styles.noteInput}
