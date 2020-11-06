@@ -13,6 +13,7 @@ import Svg, { Path } from "react-native-svg";
 import Entry from "../components/Entry";
 import ToggleSwitch from "rn-toggle-switch";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import MasterCalendar from "../components/Calendar";
 
 class Toggle extends ToggleSwitch {
   onDragEnd = (e) => {
@@ -40,6 +41,9 @@ function HistoryScreen(props) {
       <View style={styles.background}>
         <View style={styles.historyTopbar}>
           <Text style={styles.historyTitle}>Your Entries</Text>
+          {/*           
+          Uncomment when calendar should come back
+
           <Toggle
             text={{
               on: "Cards",
@@ -62,14 +66,23 @@ function HistoryScreen(props) {
             onValueChange={(val) => {
               handleChange(val);
             }}
-          />
+          />*/}
+
           <MaterialCommunityIcons
             name="settings-outline"
             size={24}
             color={colours.secondaryThick}
           />
         </View>
+        {/*        {viewType ? (
+          <>
 
+        ) : (
+          <>
+            <MasterCalendar />
+          </>
+        )}
+        */}
         <ScrollView scrollEventThrottle={16}>
           <View style={styles.entryList}>
             <ScrollView
