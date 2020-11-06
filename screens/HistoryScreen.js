@@ -6,13 +6,14 @@ import {
   Text,
   TextInput,
   Keyboard,
+  ScrollView,
 } from "react-native";
 import colours from "../res/colours";
 import Svg, { Path } from "react-native-svg";
 
 function HistoryScreen(props) {
   return (
-    <>
+    <View>
       <View style={styles.background}></View>
       <Svg
         style={styles.bgLayer}
@@ -28,7 +29,7 @@ function HistoryScreen(props) {
           fill-opacity="1"
         ></Path>
       </Svg>
-    </>
+    </View>
   );
 }
 
@@ -37,6 +38,12 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
+    position: "absolute",
+    zIndex: 100,
+    top: 0,
+    alignSelf: "center",
+    elevation: 100,
+    height: "100%",
   },
   bgLayer: {
     transform: [{ rotateZ: "180deg" }, { scaleX: -1 }],
