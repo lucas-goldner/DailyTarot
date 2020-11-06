@@ -1,29 +1,57 @@
 import React, { useState } from "react";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, Image, TextInput } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { color } from "react-native-reanimated";
+import colours from "../res/colours";
 
 function BottomPopup({ cards, randomIndex }) {
   return (
     <View style={styles.modalScreen}>
       <View style={styles.cardContainer}>
-        <Text>hey</Text>
-        <Text>hey</Text>
+        <Image
+          style={styles.imgCard}
+          resizeMode="contain"
+          source={cards[randomIndex].imageTarot}
+        />
+        <View style={styles.cardInfo}>
+          <Text> {cards[randomIndex].title}</Text>
+          <Text>{cards[randomIndex].description}</Text>
+        </View>
       </View>
+      <TextInput
+        allowFontScaling
+        disableFullscreenUI
+        maxFontSizeMultiplier={5}
+        multiline={true}
+        textAlignVertical="top"
+        style={styles.noteInput}
+      ></TextInput>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  cardInfo: {},
+  imgCard: {
+    height: 200,
+    width: 80,
+  },
   modalScreen: {
-    flex: 1,
     width: "100%",
   },
   cardContainer: {
-    flex: 1,
-    width: "100%",
+    marginTop: 10,
+    marginStart: 10,
     flexDirection: "row",
-    justifyContent: "space-around",
+    justifyContent: "flex-start",
     alignSelf: "center",
+    alignItems: "center",
+  },
+  noteInput: {
+    borderColor: colours.secondary,
+    borderWidth: 2,
+    borderRadius: 10,
+    padding: 10,
   },
 });
 

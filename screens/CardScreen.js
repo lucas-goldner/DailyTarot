@@ -29,7 +29,7 @@ function CardScreen({ cards, randomIndex }) {
             style={styles.imgCard}
             resizeMode="contain"
             source={cards[randomIndex].imageTarot}
-          ></Image>
+          />
           <Text
             adjustsFontSizeToFit
             allowFontScaling

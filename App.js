@@ -122,14 +122,15 @@ export default function App() {
               <MaterialCommunityIcons
                 name="arrow-left"
                 size={24}
-                color="black"
+                color={colours.secondaryThick}
                 onPress={() => setModalVisible(false)}
               />
-              <Text>Create Post</Text>
+              <Text style={styles.modalTitle}>Create Entry</Text>
               <MaterialCommunityIcons
                 name="content-save"
                 size={24}
-                color="black"
+                color={colours.secondaryThick}
+                onPress={() => Alert.alert("Saved Entry")}
               />
             </View>
             <ModalScreen cards={cards} randomIndex={randomIndex} />
@@ -141,11 +142,16 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  modalTitle: {
+    fontSize: 20,
+    color: colours.secondaryThick,
+    fontWeight: "bold",
+  },
   topbar: {
-    flex: 1,
     flexDirection: "row",
     justifyContent: "space-around",
     width: "100%",
+    alignItems: "baseline",
   },
   modalView: {
     width: "100%",
