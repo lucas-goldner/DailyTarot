@@ -1,12 +1,19 @@
 import React from "react";
-import { StyleSheet, View, Text, Image } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  Image,
+  KeyboardAvoidingView,
+  Keyboard,
+} from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import colours from "../res/colours";
 import Svg, { Circle, Path } from "react-native-svg";
 
 function CardScreen({ cards, randomIndex }) {
   return (
-    <View>
+    <KeyboardAvoidingView behavior={"height"} keyboardVerticalOffset={-200}>
       <Svg
         style={styles.backgroundCirlces1}
         height={400}
@@ -63,7 +70,7 @@ function CardScreen({ cards, randomIndex }) {
           fill-opacity="1"
         ></Path>
       </Svg>
-    </View>
+    </KeyboardAvoidingView>
   );
 }
 
