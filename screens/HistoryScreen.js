@@ -1,20 +1,36 @@
 import React, { useState, useEffect } from "react";
 import {
-  Image,
   StyleSheet,
   View,
   Text,
   TextInput,
   Keyboard,
   ScrollView,
+  Image,
 } from "react-native";
 import colours from "../res/colours";
 import Svg, { Path } from "react-native-svg";
+import Entry from "../components/Entry";
 
 function HistoryScreen(props) {
   return (
     <View>
-      <View style={styles.background}></View>
+      <View style={styles.background}>
+        <ScrollView scrollEventThrottle={16}>
+          <Text style={styles.historyTitle}>Your Entries</Text>
+          <View style={styles.entryList}>
+            <ScrollView
+              horizontal={true}
+              showsHorizontalScrollIndicator={false}
+            >
+              <Entry />
+              <Entry />
+              <Entry />
+              <Entry />
+            </ScrollView>
+          </View>
+        </ScrollView>
+      </View>
       <Svg
         style={styles.bgLayer}
         data-name="BGLayer"
@@ -34,6 +50,13 @@ function HistoryScreen(props) {
 }
 
 const styles = StyleSheet.create({
+  historyTitle: {
+    paddingTop: 50,
+    fontSize: 20,
+    color: colours.secondaryThick,
+    fontWeight: "bold",
+    alignSelf: "center",
+  },
   background: {
     flex: 1,
     justifyContent: "center",
