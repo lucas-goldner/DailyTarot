@@ -116,7 +116,7 @@ export default function App() {
             style={{
               ...styles.modalBG,
               backgroundColor: actionColourChange
-                ? colours.bg
+                ? colours.primary
                 : colours.secondary,
             }}
           ></View>
