@@ -6,15 +6,16 @@ import Svg, { Path } from "react-native-svg";
 
 const cards = [
   {
-    title: "swords10",
-    imageTarot: require("../assets/tarot/swords10.jpg"),
+    title: "The Fool",
+    imageTarot: require("../assets/tarot/major00.jpg"),
     description:
-      "The 10th of the swords cards The 10th of the swords cards The 10th of the swords cards The 10th of the swords cards The 10th of the swords cards The 10th of the swords cards The 10th of the swords cards The 10th of the swords cards",
+      "The Fool also represents the complete faith that life is good and worthy of trust. In readings, the Fool can signal a new beginning or change of direction - one that will guide you onto a path of adventure, wonder and personal growth.",
   },
   {
-    title: "swords11",
-    imageTarot: require("../assets/tarot/swords11.jpg"),
-    description: "The 11th of the swords cards",
+    title: "The Magician",
+    imageTarot: require("../assets/tarot/major01.jpg"),
+    description:
+      "The Magician is the archetype of the active, masculine principle - the ultimate achiever. He symbolizes the power to tap universal forces and use them for creative purposes. He is not afraid to act and believes in himself.",
   },
 ];
 
@@ -75,9 +76,20 @@ const styles = StyleSheet.create({
   },
   bgLayer: {
     transform: [{ rotateZ: "180deg" }],
+    borderColor: "black",
+    borderRadius: 20,
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 10,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 30.0,
   },
   cardDescription: {
-    marginStart: 10,
+    textAlign: "center",
+    alignSelf: "center",
+    fontSize: 15,
   },
   cardTitle: {
     fontSize: 20,
@@ -90,7 +102,7 @@ const styles = StyleSheet.create({
   },
   Card: {
     marginTop: "20%",
-    height: "75%",
+    height: "80%",
     backgroundColor: colours.bg,
     width: 350,
     borderColor: "black",
@@ -100,7 +112,7 @@ const styles = StyleSheet.create({
       width: 0,
       height: 10,
     },
-    shadowOpacity: 0.5,
+    shadowOpacity: 0.2,
     shadowRadius: 26.0,
     elevation: 10,
     zIndex: 100,
@@ -108,7 +120,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   Card2: {
-    marginTop: "10%",
+    marginTop: "5%",
     height: "70%",
     backgroundColor: colours.primary,
     width: 325,
@@ -121,12 +133,12 @@ const styles = StyleSheet.create({
       width: 0,
       height: 10,
     },
-    shadowOpacity: 0.5,
+    shadowOpacity: 0.2,
     shadowRadius: 26.0,
     elevation: 5,
   },
   Card3: {
-    marginTop: "10%",
+    marginTop: "5%",
     height: "65%",
     backgroundColor: colours.primaryThick,
     width: 300,
@@ -139,7 +151,7 @@ const styles = StyleSheet.create({
       width: 0,
       height: 10,
     },
-    shadowOpacity: 0.5,
+    shadowOpacity: 0.2,
     shadowRadius: 26.0,
     elevation: 1,
   },
