@@ -92,7 +92,7 @@ export default function App() {
                 }}
               >
                 <View style={styles.modalView}>
-                  <View style={styles.topbar}>
+                  <View style={styles.settingsTopbar}>
                     <MaterialCommunityIcons
                       name="arrow-left"
                       size={30}
@@ -181,6 +181,13 @@ export default function App() {
 }
 
 const styles = StyleSheet.create({
+  settingsTopbar: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    marginLeft: -140,
+    width: "100%",
+    alignItems: "center",
+  },
   historyTopbar: {
     backgroundColor: colours.primary,
     marginTop: 50,

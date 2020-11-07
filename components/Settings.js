@@ -6,18 +6,34 @@ import colours from "../res/colours";
 function SettingsScreen() {
   return (
     <View style={styles.modalScreen}>
-      <Text>These are a lot of settings</Text>
+      <Text style={styles.modalTitle}>Login / Register</Text>
+      <View style={styles.line} />
+      <Text style={styles.modalTitle}>Import Entries</Text>
+      <View style={styles.line} />
+      <Text style={styles.modalTitle}>Export Entries</Text>
+      <View style={styles.line} />
+      <Text style={styles.modalTitle}>Language</Text>
+      <View style={styles.line} />
+      <Text style={styles.modalTitle}>Credits</Text>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  line: {
+    borderBottomColor: colours.secondaryThick,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    width: "100%",
+    marginTop: 20,
+    marginBottom: 20,
+  },
   modalTitle: {
     fontSize: 20,
-    color: colours.secondaryThick,
+    color: colours.secondary,
     fontWeight: "bold",
   },
   modalScreen: {
+    marginTop: "50%",
     width: "100%",
     justifyContent: "center",
     alignContent: "center",
