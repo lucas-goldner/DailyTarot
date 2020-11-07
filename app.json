@@ -10,6 +10,9 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
+    "experiments": {
+      "turboModules": true
+    },
     "updates": {
       "fallbackToCacheTimeout": 0
     },
