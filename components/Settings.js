@@ -3,11 +3,10 @@ import {
   StyleSheet,
   View,
   Text,
-  Image,
-  TextInput,
   TouchableOpacity,
+  ScrollView,
 } from "react-native";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
+
 import { Transition, Transitioning } from "react-native-reanimated";
 import colours from "../res/colours";
 import AccordionItem from "./AccordionItem";
@@ -25,26 +24,31 @@ const items = [
     category: "Login / Register",
     subCategories: ["Skincare", "Health", "Eye care"],
     type: "login",
+    marginTop: 10,
   },
   {
     category: "Import Entries",
     subCategories: ["Fruits ", "Frozen Food", "Bakery"],
     type: "import",
+    marginTop: 10,
   },
   {
     category: "Export Entries",
     subCategories: ["Skincare", "Nail care", "Perfume"],
     type: "export",
+    marginTop: 10,
   },
   {
-    category: "Language",
-    subCategories: ["Toys", "Trolleys", "LEGO®"],
-    type: "language",
+    category: "Change Theme",
+    subCategories: ["Skincare", "Nail care", "Perfume"],
+    type: "theme",
+    marginTop: 10,
   },
   {
     category: "Credits",
     subCategories: ["Air purifiers", "hoods & ovens", "Refrigerators"],
     type: "credits",
+    marginTop: 10,
   },
 ];
 
@@ -52,34 +56,41 @@ function SettingsScreen() {
   const [currentIndex, setCurrentIndex] = useState(null);
   const ref = useRef();
   return (
-    <Transitioning.View
-      ref={ref}
-      transition={transition}
-      style={styles.container}
-    >
-      {items.map(({ category, type }, index) => {
-        return (
-          <TouchableOpacity
-            key={category}
-            onPress={() => {
-              ref.current.animateNextTransition();
-              setCurrentIndex(index === currentIndex ? null : index);
-            }}
-            style={styles.cardContainer}
-            activeOpacity={0.5}
-          >
-            <View style={styles.card}>
-              <Text style={styles.modalTitle}>{category}</Text>
-              {index === currentIndex && (
-                <View style={styles.subCategoriesList}>
-                  <AccordionItem type={type} />
-                </View>
-              )}
-            </View>
-          </TouchableOpacity>
-        );
-      })}
-    </Transitioning.View>
+    <ScrollView showsVerticalScrollIndicator={true} style={{ width: "100%" }}>
+      <Transitioning.View
+        ref={ref}
+        transition={transition}
+        style={styles.container}
+      >
+        {items.map(({ category, type, marginTop }, index) => {
+          return (
+            <TouchableOpacity
+              key={category}
+              onPress={() => {
+                ref.current.animateNextTransition();
+                setCurrentIndex(index === currentIndex ? null : index);
+              }}
+              style={styles.cardContainer}
+              activeOpacity={0.5}
+            >
+              <View style={styles.card}>
+                <Text style={styles.modalTitle}>{category}</Text>
+                {index === currentIndex && (
+                  <View
+                    style={{
+                      ...styles.subCategoriesList,
+                      marginTop: marginTop,
+                    }}
+                  >
+                    <AccordionItem type={type} />
+                  </View>
+                )}
+              </View>
+            </TouchableOpacity>
+          );
+        })}
+      </Transitioning.View>
+    </ScrollView>
   );
 }
 
@@ -104,13 +115,14 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   container: {
+    marginTop: 50,
     flex: 1,
     width: "100%",
     backgroundColor: "#fff",
     justifyContent: "center",
   },
   cardContainer: {
-    height: 100,
+    height: 200,
     flexGrow: 1,
   },
   card: {
