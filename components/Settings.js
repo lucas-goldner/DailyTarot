@@ -10,6 +10,7 @@ import {
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Transition, Transitioning } from "react-native-reanimated";
 import colours from "../res/colours";
+import AccordionItem from "./AccordionItem";
 
 const transition = (
   <Transition.Together>
@@ -19,36 +20,31 @@ const transition = (
   </Transition.Together>
 );
 
-const data = [
+const items = [
   {
-    bg: "#A8DDE9",
-    color: "#3F5B98",
-    category: "Healthcare",
+    category: "Login / Register",
     subCategories: ["Skincare", "Health", "Eye care"],
+    type: "login",
   },
   {
-    bg: "#086E4B",
-    color: "#FCBE4A",
-    category: "Food & Drink",
+    category: "Import Entries",
     subCategories: ["Fruits ", "Frozen Food", "Bakery"],
+    type: "import",
   },
   {
-    bg: "#FECBCA",
-    color: "#FD5963",
-    category: "Beauty",
+    category: "Export Entries",
     subCategories: ["Skincare", "Nail care", "Perfume"],
+    type: "export",
   },
   {
-    bg: "#193B8C",
-    color: "#FECBCD",
-    category: "Baby & Kids",
+    category: "Language",
     subCategories: ["Toys", "Trolleys", "LEGO®"],
+    type: "language",
   },
   {
-    bg: "#FDBD50",
-    color: "#F5F5EB",
-    category: "Homeware",
+    category: "Credits",
     subCategories: ["Air purifiers", "hoods & ovens", "Refrigerators"],
+    type: "credits",
   },
 ];
 
@@ -61,7 +57,7 @@ function SettingsScreen() {
       transition={transition}
       style={styles.container}
     >
-      {data.map(({ bg, color, category, subCategories }, index) => {
+      {items.map(({ category, type }, index) => {
         return (
           <TouchableOpacity
             key={category}
@@ -70,17 +66,13 @@ function SettingsScreen() {
               setCurrentIndex(index === currentIndex ? null : index);
             }}
             style={styles.cardContainer}
-            activeOpacity={0.9}
+            activeOpacity={0.5}
           >
             <View style={styles.card}>
               <Text style={styles.modalTitle}>{category}</Text>
               {index === currentIndex && (
                 <View style={styles.subCategoriesList}>
-                  {subCategories.map((subCategory) => (
-                    <Text key={subCategory} style={styles.body}>
-                      {subCategory}
-                    </Text>
-                  ))}
+                  <AccordionItem type={type} />
                 </View>
               )}
             </View>
