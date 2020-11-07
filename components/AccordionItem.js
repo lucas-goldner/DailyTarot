@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   StyleSheet,
   View,
@@ -12,6 +12,7 @@ import {
 } from "react-native";
 import colours from "../res/colours";
 import ToggleSwitch from "rn-toggle-switch";
+import * as firebase from "firebase";
 
 class Toggle extends ToggleSwitch {
   onDragEnd = (e) => {
@@ -34,6 +35,25 @@ function AccordionItem({ type }) {
   const handleChange = (val) => {
     setcardType(val);
   };
+
+  const [emailAddress, setEmailAddress] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const isInvalid = password === "" || emailAddress === "";
+
+  const handleSignup = (event) => {
+    event.preventDefault();
+
+    return firebase
+      .auth()
+      .createUserWithEmailAndPassword(emailAddress, password)
+      .catch((error) => {
+        setEmailAddress("");
+        setPassword("");
+        setError(error.message);
+      });
+  };
+
   return (
     <KeyboardAvoidingView
       behavior="position"
@@ -46,26 +66,31 @@ function AccordionItem({ type }) {
             placeholder="Email"
             type="email"
             autoCompleteType="email"
-            autoFocus
+            value={emailAddress}
             keyboardType="email-address"
+            onChangeText={(value) => setEmailAddress(value)}
           />
           <TextInput
             style={styles.noteInput}
             placeholder="Password"
             autoCompleteType="password"
             secureTextEntry={true}
+            value={password}
+            onChangeText={(value) => setPassword(value)}
           />
           <TouchableOpacity
             style={styles.button}
             onPress={() => Alert.alert("Hex")}
+            disabled={isInvalid}
           >
-            <Text style={{ color: colours.bg }}>Login</Text>
+            <Text style={styles.singleButton}>Login</Text>
           </TouchableOpacity>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => Alert.alert("Hex")}
+            onPress={(event) => handleSignup(event)}
+            disabled={isInvalid}
           >
-            <Text style={{ color: colours.bg }}>Register</Text>
+            <Text style={styles.singleButton}>Register</Text>
           </TouchableOpacity>
         </View>
       ) : type == "import" ? (
