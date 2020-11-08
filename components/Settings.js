@@ -52,7 +52,7 @@ const items = [
   },
 ];
 
-function SettingsScreen() {
+function SettingsScreen({ isLoggedIn }) {
   const [currentIndex, setCurrentIndex] = useState(null);
   const ref = useRef();
   return (
@@ -82,7 +82,7 @@ function SettingsScreen() {
                       marginTop: marginTop,
                     }}
                   >
-                    <AccordionItem type={type} />
+                    <AccordionItem type={type} isLoggedIn={isLoggedIn} />
                   </View>
                 )}
               </View>

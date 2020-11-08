@@ -29,7 +29,8 @@ class Toggle extends ToggleSwitch {
   onDragStart = () => {};
 }
 
-function AccordionItem({ type }) {
+function AccordionItem({ type, isLoggedIn }) {
+  const [currentyLogin, setCurrentyLogin] = useState(isLoggedIn);
   const keyboardVerticalOffset = Platform.OS === "ios" ? 100 : 0;
   const [cardType, setcardType] = useState(true);
   const handleChange = (val) => {
@@ -47,6 +48,12 @@ function AccordionItem({ type }) {
     return firebase
       .auth()
       .createUserWithEmailAndPassword(emailAddress, password)
+      .then(() => {
+        setError("Created Account");
+        setEmailAddress("");
+        setPassword("");
+        setCurrentyLogin(true);
+      })
       .catch((error) => {
         setEmailAddress("");
         setPassword("");
@@ -64,6 +71,7 @@ function AccordionItem({ type }) {
         setError("Logged in");
         setEmailAddress("");
         setPassword("");
+        setCurrentyLogin(true);
       })
       .catch((error) => {
         setEmailAddress("");
@@ -78,6 +86,7 @@ function AccordionItem({ type }) {
       .signOut()
       .then(function () {
         setError("Logged out");
+        setCurrentyLogin(false);
       })
       .catch(function (error) {
         setError(error.message);
@@ -91,49 +100,63 @@ function AccordionItem({ type }) {
     >
       {type == "login" ? (
         <View style={{ ...styles.itemView, height: 200 }}>
-          <TextInput
-            style={styles.noteInput}
-            placeholder="Email"
-            type="email"
-            autoCompleteType="email"
-            value={emailAddress}
-            keyboardType="email-address"
-            onChangeText={(value) => setEmailAddress(value)}
-          />
-          <TextInput
-            style={styles.noteInput}
-            placeholder="Password"
-            autoCompleteType="password"
-            secureTextEntry={true}
-            value={password}
-            onChangeText={(value) => setPassword(value)}
-          />
-          <TouchableOpacity
-            style={styles.button}
-            onPress={(event) => handleSignin(event)}
-            disabled={isInvalid}
-          >
-            <Text style={styles.singleButton}>Login</Text>
-          </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={(event) => handleSignup(event)}
-            disabled={isInvalid}
-          >
-            <Text
-              style={styles.singleButton}
-              adjustsFontSizeToFit
-              allowFontScaling
-              maxFontSizeMultiplier={5}
-            >
-              Register
-            </Text>
-          </TouchableOpacity>
-
-          {error == "Logged in" ? (
-            <Text style={styles.sucMSG}>{error}</Text>
+          {currentyLogin ? (
+            <>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={() => handleSignOut()}
+              >
+                <Text style={styles.singleButton}>Log Out</Text>
+              </TouchableOpacity>
+            </>
           ) : (
-            <Text style={styles.errorMSG}>{error}</Text>
+            <>
+              <TextInput
+                style={styles.noteInput}
+                placeholder="Email"
+                type="email"
+                autoCompleteType="email"
+                value={emailAddress}
+                keyboardType="email-address"
+                onChangeText={(value) => setEmailAddress(value)}
+              />
+              <TextInput
+                style={styles.noteInput}
+                placeholder="Password"
+                autoCompleteType="password"
+                secureTextEntry={true}
+                value={password}
+                onChangeText={(value) => setPassword(value)}
+              />
+              <TouchableOpacity
+                style={styles.button}
+                onPress={(event) => handleSignin(event)}
+                disabled={isInvalid}
+              >
+                <Text style={styles.singleButton}>Login</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.button}
+                onPress={(event) => handleSignup(event)}
+                disabled={isInvalid}
+              >
+                <Text
+                  style={styles.singleButton}
+                  adjustsFontSizeToFit
+                  allowFontScaling
+                  maxFontSizeMultiplier={5}
+                >
+                  Register
+                </Text>
+              </TouchableOpacity>
+              {error == "Logged in" ? (
+                <Text style={styles.sucMSG}>{error}</Text>
+              ) : error == "Created Account" ? (
+                <Text style={styles.sucMSG}>{error}</Text>
+              ) : (
+                <Text style={styles.errorMSG}>{error}</Text>
+              )}
+            </>
           )}
         </View>
       ) : type == "import" ? (

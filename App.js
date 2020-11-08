@@ -41,6 +41,7 @@ export default function App() {
   const [settingsVisible, setSettingsVisible] = useState(false);
   const [actionColourChange, setActionColourChange] = useState(false);
   const randomIndex = Math.round(Math.random() * 1);
+  const [personaCard, setPersonaCards] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const togglePost = () => {};
   const setActionColourChangeToTrue = () => {
@@ -112,7 +113,7 @@ export default function App() {
                     />
                     <Text style={styles.modalTitle}>Settings</Text>
                   </View>
-                  <SettingsScreen />
+                  <SettingsScreen isLoggedIn={loggedIn} />
                 </View>
               </Modal>
             </View>
