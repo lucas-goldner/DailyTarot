@@ -54,6 +54,24 @@ function AccordionItem({ type }) {
       });
   };
 
+  const handleSignin = (event) => {
+    event.preventDefault();
+
+    return firebase
+      .auth()
+      .signInWithEmailAndPassword(emailAddress, password)
+      .then(() => {
+        setError("Logged in");
+        setEmailAddress("");
+        setPassword("");
+      })
+      .catch((error) => {
+        setEmailAddress("");
+        setPassword("");
+        setError(error.message);
+      });
+  };
+
   return (
     <KeyboardAvoidingView
       behavior="position"
@@ -80,7 +98,7 @@ function AccordionItem({ type }) {
           />
           <TouchableOpacity
             style={styles.button}
-            onPress={() => Alert.alert("Hex")}
+            onPress={(event) => handleSignin(event)}
             disabled={isInvalid}
           >
             <Text style={styles.singleButton}>Login</Text>
@@ -90,8 +108,21 @@ function AccordionItem({ type }) {
             onPress={(event) => handleSignup(event)}
             disabled={isInvalid}
           >
-            <Text style={styles.singleButton}>Register</Text>
+            <Text
+              style={styles.singleButton}
+              adjustsFontSizeToFit
+              allowFontScaling
+              maxFontSizeMultiplier={5}
+            >
+              Register
+            </Text>
           </TouchableOpacity>
+
+          {error == "Logged in" ? (
+            <Text style={styles.sucMSG}>{error}</Text>
+          ) : (
+            <Text style={styles.errorMSG}>{error}</Text>
+          )}
         </View>
       ) : type == "import" ? (
         <View style={styles.itemView}>
@@ -151,6 +182,14 @@ function AccordionItem({ type }) {
 }
 
 const styles = StyleSheet.create({
+  sucMSG: {
+    color: colours.primaryThick,
+    fontSize: 10,
+  },
+  errorMSG: {
+    color: "red",
+    fontSize: 8,
+  },
   itemView: {
     flexDirection: "column",
     justifyContent: "space-around",
@@ -161,7 +200,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 10,
     padding: 3,
-    width: 240,
+    width: "100%",
   },
   button: {
     alignItems: "center",

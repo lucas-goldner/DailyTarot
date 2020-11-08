@@ -16,6 +16,7 @@ import CardScreen from "./screens/CardScreen";
 import HistoryScreen from "./screens/HistoryScreen";
 import ModalScreen from "./components/Modal";
 import SettingsScreen from "./components/Settings";
+import firebase from "./res/ApiKey";
 
 const Tab = createMaterialBottomTabNavigator();
 
