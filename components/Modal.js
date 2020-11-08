@@ -6,16 +6,34 @@ import {
   Image,
   TextInput,
   KeyboardAvoidingView,
+  Alert,
 } from "react-native";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import InputScrollView from "react-native-input-scroll-view";
 import colours from "../res/colours";
 
-function BottomPopup({ cards, randomIndex }) {
+function BottomPopup({ cards, randomIndex, setModalVisible }) {
   const [text, setText] = useState("");
   const [textareaHeight, setTextareaHeight] = useState("");
   return (
     <View style={styles.modalScreen}>
+      <View style={styles.topbar}>
+        <MaterialCommunityIcons
+          name="arrow-left"
+          size={30}
+          color={colours.secondaryThick}
+          onPress={() => setModalVisible(false)}
+        />
+        <Text style={styles.modalTitle}>Create Entry</Text>
+        <MaterialCommunityIcons
+          name="content-save"
+          size={30}
+          color={colours.secondaryThick}
+          onPress={() => {
+            Alert.alert("Saved Entry"), setModalVisible(false);
+          }}
+        />
+      </View>
       <View style={styles.cardContainer}>
         <Image
           style={styles.imgCard}
@@ -34,10 +52,11 @@ function BottomPopup({ cards, randomIndex }) {
           maxFontSizeMultiplier={5}
           multiline={true}
           autoFocus
+          value={text}
           numberOfLines={10}
           textAlignVertical="top"
           style={styles.noteInput}
-          onChangeText={(e) => setText(e.target)}
+          onChangeText={(value) => setText(value)}
           onContentSizeChange={(e) => setTextareaHeight(e.target)}
         />
       </InputScrollView>
@@ -74,6 +93,12 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderRadius: 10,
     padding: 10,
+  },
+  topbar: {
+    flexDirection: "row",
+    justifyContent: "space-around",
+    width: "100%",
+    alignItems: "baseline",
   },
 });
 

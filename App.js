@@ -169,22 +169,11 @@ export default function App() {
             }}
           ></View>
           <View style={styles.modalView}>
-            <View style={styles.topbar}>
-              <MaterialCommunityIcons
-                name="arrow-left"
-                size={30}
-                color={colours.secondaryThick}
-                onPress={() => setModalVisible(false)}
-              />
-              <Text style={styles.modalTitle}>Create Entry</Text>
-              <MaterialCommunityIcons
-                name="content-save"
-                size={30}
-                color={colours.secondaryThick}
-                onPress={() => Alert.alert("Saved Entry")}
-              />
-            </View>
-            <ModalScreen cards={cards} randomIndex={randomIndex} />
+            <ModalScreen
+              cards={cards}
+              randomIndex={randomIndex}
+              setModalVisible={setModalVisible}
+            />
           </View>
         </Modal>
       </View>
