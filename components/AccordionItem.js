@@ -72,6 +72,18 @@ function AccordionItem({ type }) {
       });
   };
 
+  const handleSignOut = () => {
+    return firebase
+      .auth()
+      .signOut()
+      .then(function () {
+        setError("Logged out");
+      })
+      .catch(function (error) {
+        setError(error.message);
+      });
+  };
+
   return (
     <KeyboardAvoidingView
       behavior="position"
@@ -128,7 +140,7 @@ function AccordionItem({ type }) {
         <View style={styles.itemView}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => Alert.alert("Hex")}
+            onPress={() => handleSignOut()}
           >
             <Text style={styles.singleButton}>Import with account</Text>
           </TouchableOpacity>

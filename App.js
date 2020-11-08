@@ -17,6 +17,7 @@ import HistoryScreen from "./screens/HistoryScreen";
 import ModalScreen from "./components/Modal";
 import SettingsScreen from "./components/Settings";
 import firebase from "./res/ApiKey";
+import * as firebaseRN from "firebase";
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -40,6 +41,7 @@ export default function App() {
   const [settingsVisible, setSettingsVisible] = useState(false);
   const [actionColourChange, setActionColourChange] = useState(false);
   const randomIndex = Math.round(Math.random() * 1);
+  const [loggedIn, setLoggedIn] = useState(false);
   const togglePost = () => {};
   const setActionColourChangeToTrue = () => {
     setActionColourChange(true);
@@ -47,6 +49,14 @@ export default function App() {
   const setActionColourChangeToFalse = () => {
     setActionColourChange(false);
   };
+
+  firebaseRN.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      setLoggedIn(true);
+    } else {
+      setLoggedIn(false);
+    }
+  });
 
   return (
     <NavigationContainer>
