@@ -18,6 +18,16 @@ import ModalScreen from "./components/Modal";
 import SettingsScreen from "./components/Settings";
 import firebase from "./res/ApiKey";
 import * as firebaseRN from "firebase";
+import { LogBox } from "react-native";
+import _ from "lodash";
+
+LogBox.ignoreLogs(["Setting a timer"]);
+const _console = _.clone(console);
+console.warn = (message) => {
+  if (message.indexOf("Setting a timer") <= -1) {
+    _console.warn(message);
+  }
+};
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -25,12 +35,14 @@ const cards = [
   {
     title: "The Fool",
     imageTarot: require("./assets/tarot/major00.jpg"),
+    imageP5: require("./assets/p5/major00.jpg"),
     description:
       "The Fool also represents the complete faith that life is good and worthy of trust. In readings, the Fool can signal a new beginning or change of direction - one that will guide you onto a path of adventure, wonder and personal growth.",
   },
   {
     title: "The Magician",
     imageTarot: require("./assets/tarot/major01.jpg"),
+    imageP5: require("./assets/p5/major01.jpg"),
     description:
       "The Magician is the archetype of the active, masculine principle - the ultimate achiever. He symbolizes the power to tap universal forces and use them for creative purposes. He is not afraid to act and believes in himself.",
   },
@@ -173,6 +185,7 @@ export default function App() {
               cards={cards}
               randomIndex={randomIndex}
               setModalVisible={setModalVisible}
+              loggedIn={loggedIn}
             />
           </View>
         </Modal>

@@ -11,10 +11,35 @@ import {
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import InputScrollView from "react-native-input-scroll-view";
 import colours from "../res/colours";
+import * as firebaseRN from "firebase";
+import "firebase/firestore";
 
-function BottomPopup({ cards, randomIndex, setModalVisible }) {
+function BottomPopup({ cards, randomIndex, setModalVisible, loggedIn }) {
   const [text, setText] = useState("");
   const [textareaHeight, setTextareaHeight] = useState("");
+  const user = firebaseRN.auth().currentUser.uid;
+  const db = firebaseRN.firestore();
+  const firebase = require("firebase");
+  // Required for side-effects
+  require("firebase/firestore");
+
+  const handleDataPush = () =>
+    db
+      .collection(user)
+      .add({
+        UID: user,
+        card: cards[randomIndex].title,
+        imageTarot: cards[randomIndex].imageTarot,
+        imageP5: cards[randomIndex].imageP5,
+        description: cards[randomIndex].description,
+        note: text,
+      })
+      .then(function (docRef) {
+        console.log("Document written with ID: ", docRef.id);
+      })
+      .catch(function (error) {
+        console.error("Error adding document: ", error);
+      });
   return (
     <View style={styles.modalScreen}>
       <View style={styles.topbar}>
@@ -30,7 +55,13 @@ function BottomPopup({ cards, randomIndex, setModalVisible }) {
           size={30}
           color={colours.secondaryThick}
           onPress={() => {
-            Alert.alert("Saved Entry"), setModalVisible(false);
+            {
+              loggedIn
+                ? (handleDataPush(),
+                  Alert.alert("Publishing Entry"),
+                  setModalVisible(false))
+                : (Alert.alert("Saved Entry"), setModalVisible(false));
+            }
           }}
         />
       </View>
