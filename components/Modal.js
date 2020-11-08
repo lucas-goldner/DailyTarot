@@ -33,6 +33,7 @@ function BottomPopup({ cards, randomIndex, setModalVisible, loggedIn }) {
         imageP5: cards[randomIndex].imageP5,
         description: cards[randomIndex].description,
         note: text,
+        timestamp: new Date(),
       })
       .then(function (docRef) {
         console.log("Document written with ID: ", docRef.id);

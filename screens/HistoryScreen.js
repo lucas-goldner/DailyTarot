@@ -5,6 +5,8 @@ import Svg, { Path } from "react-native-svg";
 import Entry from "../components/Entry";
 import ToggleSwitch from "rn-toggle-switch";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import * as firebaseRN from "firebase";
+import "firebase/firestore";
 
 class Toggle extends ToggleSwitch {
   onDragEnd = (e) => {
@@ -21,12 +23,29 @@ class Toggle extends ToggleSwitch {
   onDragStart = () => {};
 }
 
-function HistoryScreen(props) {
+function HistoryScreen({ isLoggedIn }) {
   //True cards false calender
   const [viewType, setviewType] = useState(true);
   const handleChange = (val) => {
     setviewType(val);
   };
+  const [entryAmount, setEntryAmount] = useState(0);
+  const user = firebaseRN.auth().currentUser.uid;
+  const db = firebaseRN.firestore();
+  const firebase = require("firebase");
+  // Required for side-effects
+
+  db.collection(user)
+    .get()
+    .then(function (querySnapshot) {
+      setEntryAmount(querySnapshot.size);
+    });
+
+  const entries = [];
+  for (let i = 0; i < entryAmount; i++) {
+    entries.push(<Entry key={i} />);
+  }
+
   return (
     <View>
       <View style={styles.background}>
@@ -36,10 +55,7 @@ function HistoryScreen(props) {
               horizontal={true}
               showsHorizontalScrollIndicator={false}
             >
-              <Entry />
-              <Entry />
-              <Entry />
-              <Entry />
+              {entries}
             </ScrollView>
           </View>
         </ScrollView>

@@ -106,7 +106,7 @@ export default function App() {
                   onPress={() => setSettingsVisible(true)}
                 />
               </View>
-              <HistoryScreen />
+              <HistoryScreen isLoggedIn={loggedIn} />
               <Modal
                 animationType="slide"
                 transparent={true}
