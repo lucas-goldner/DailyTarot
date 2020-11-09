@@ -10,6 +10,7 @@ npm-debug.*
 web-build/
 res/ApiKey.js
 android/app/google-services.json
+ios/GoogleService-Info.plist
 
 # macOS
 .DS_Store
