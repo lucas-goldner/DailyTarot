@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import colours from "../res/colours";
 
-function Entry() {
+function Entry({ card, description, imageP5, imageTarot, note }) {
   return (
     <View style={styles.entryItem}>
       <View
@@ -10,20 +10,16 @@ function Entry() {
           flex: 2,
         }}
       >
-        <Image
-          source={require("../assets/p5/major00.jpg")}
-          style={styles.entryCard}
-        />
+        <Image source={imageP5} style={styles.entryCard} />
       </View>
       <View>
-        <Text style={styles.entryTitle}>Pic One</Text>
+        <Text style={styles.entryTitle}>{card}</Text>
       </View>
       <View>
-        <Text style={{ padding: 10 }}>
-          DescrDescrDescrDescrDescrDesscrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescr
-          DescrDescrDescrDescrDescrDesscrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescr
-          DescrDescrDescrDescrDescrDesscrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescrDescr
-        </Text>
+        <Text style={{ padding: 10 }}>{description}</Text>
+      </View>
+      <View>
+        <Text style={{ padding: 10 }}>{note}</Text>
       </View>
     </View>
   );

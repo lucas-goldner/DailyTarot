@@ -24,27 +24,35 @@ class Toggle extends ToggleSwitch {
 }
 
 function HistoryScreen({ isLoggedIn }) {
-  //True cards false calender
   const [viewType, setviewType] = useState(true);
+  const [entriesData, setEntriesData] = useState([]);
+  const [entryAmount, setEntryAmount] = useState(0);
   const handleChange = (val) => {
     setviewType(val);
   };
-  const [entryAmount, setEntryAmount] = useState(0);
   const user = firebaseRN.auth().currentUser.uid;
   const db = firebaseRN.firestore();
   const firebase = require("firebase");
-  // Required for side-effects
 
-  db.collection(user)
-    .get()
-    .then(function (querySnapshot) {
-      setEntryAmount(querySnapshot.size);
-    });
+  useEffect(() => {
+    db.collection(user)
+      .get()
+      .then(function (querySnapshot) {
+        setEntryAmount(querySnapshot.size);
+        console.log("-----------------");
+        querySnapshot.forEach(function (doc) {
+          console.log(doc.id, " => ", doc.data());
+          setEntriesData((oldEntries) => [...oldEntries, doc.data()]);
+        });
+      });
 
-  const entries = [];
-  for (let i = 0; i < entryAmount; i++) {
-    entries.push(<Entry key={i} />);
-  }
+    console.log(entryAmount);
+    const entries = [];
+    for (let i = 0; i < entryAmount; i++) {
+      //entries.push(<Entry key={i} />);
+      console.log(entriesData[i].card);
+    }
+  }, []);
 
   return (
     <View>
@@ -55,7 +63,31 @@ function HistoryScreen({ isLoggedIn }) {
               horizontal={true}
               showsHorizontalScrollIndicator={false}
             >
-              {entries}
+              {entriesData.map(
+                (
+                  {
+                    UID,
+                    card,
+                    description,
+                    imageP5,
+                    imageTarot,
+                    note,
+                    timestamp,
+                  },
+                  index
+                ) => {
+                  return (
+                    <Entry
+                      key={index}
+                      card={card}
+                      description={description}
+                      imageP5={imageP5}
+                      imageTarot={imageTarot}
+                      note={note}
+                    />
+                  );
+                }
+              )}
             </ScrollView>
           </View>
         </ScrollView>
