@@ -12,7 +12,6 @@ import {
 } from "react-native";
 import colours from "../res/colours";
 import ToggleSwitch from "rn-toggle-switch";
-import * as firebase from "firebase";
 
 class Toggle extends ToggleSwitch {
   onDragEnd = (e) => {
@@ -41,57 +40,6 @@ function AccordionItem({ type, isLoggedIn }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const isInvalid = password === "" || emailAddress === "";
-
-  const handleSignup = (event) => {
-    event.preventDefault();
-
-    return firebase
-      .auth()
-      .createUserWithEmailAndPassword(emailAddress, password)
-      .then(() => {
-        setError("Created Account");
-        setEmailAddress("");
-        setPassword("");
-        setCurrentyLogin(true);
-      })
-      .catch((error) => {
-        setEmailAddress("");
-        setPassword("");
-        setError(error.message);
-      });
-  };
-
-  const handleSignin = (event) => {
-    event.preventDefault();
-
-    return firebase
-      .auth()
-      .signInWithEmailAndPassword(emailAddress, password)
-      .then(() => {
-        setError("Logged in");
-        setEmailAddress("");
-        setPassword("");
-        setCurrentyLogin(true);
-      })
-      .catch((error) => {
-        setEmailAddress("");
-        setPassword("");
-        setError(error.message);
-      });
-  };
-
-  const handleSignOut = () => {
-    return firebase
-      .auth()
-      .signOut()
-      .then(function () {
-        setError("Logged out");
-        setCurrentyLogin(false);
-      })
-      .catch(function (error) {
-        setError(error.message);
-      });
-  };
 
   return (
     <KeyboardAvoidingView
