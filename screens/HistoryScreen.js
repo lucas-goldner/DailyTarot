@@ -30,27 +30,29 @@ function HistoryScreen({ isLoggedIn }) {
   const handleChange = (val) => {
     setviewType(val);
   };
-  const user = firebaseRN.auth().currentUser.uid;
-  const db = firebaseRN.firestore();
-  const firebase = require("firebase");
 
   useEffect(() => {
-    db.collection(user)
-      .get()
-      .then(function (querySnapshot) {
-        setEntryAmount(querySnapshot.size);
-        console.log("-----------------");
-        querySnapshot.forEach(function (doc) {
-          console.log(doc.id, " => ", doc.data());
-          setEntriesData((oldEntries) => [...oldEntries, doc.data()]);
+    if (isLoggedIn == true) {
+      const user = firebaseRN.auth().currentUser.uid;
+      const db = firebaseRN.firestore();
+      const firebase = require("firebase");
+      db.collection(user)
+        .get()
+        .then(function (querySnapshot) {
+          setEntryAmount(querySnapshot.size);
+          console.log("-----------------");
+          querySnapshot.forEach(function (doc) {
+            console.log(doc.id, " => ", doc.data());
+            setEntriesData((oldEntries) => [...oldEntries, doc.data()]);
+          });
         });
-      });
 
-    console.log(entryAmount);
-    const entries = [];
-    for (let i = 0; i < entryAmount; i++) {
-      //entries.push(<Entry key={i} />);
-      console.log(entriesData[i].card);
+      console.log(entryAmount);
+      const entries = [];
+      for (let i = 0; i < entryAmount; i++) {
+        //entries.push(<Entry key={i} />);
+        console.log(entriesData[i].card);
+      }
     }
   }, []);
 
