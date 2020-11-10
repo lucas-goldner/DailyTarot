@@ -44,7 +44,6 @@ const styles = StyleSheet.create({
     borderColor: colours.secondary,
     marginLeft: 50,
     backgroundColor: colours.bg,
-    borderColor: "black",
     borderRadius: 20,
     shadowColor: "#000",
     shadowOffset: {
@@ -53,7 +52,7 @@ const styles = StyleSheet.create({
     },
     shadowOpacity: 0.2,
     shadowRadius: 26.0,
-    elevation: 10,
+    elevation: 5,
   },
 });
 

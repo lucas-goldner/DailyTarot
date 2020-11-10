@@ -140,14 +140,7 @@ function AccordionItem({ type, isLoggedIn }) {
                 onPress={(event) => handleSignup(event)}
                 disabled={isInvalid}
               >
-                <Text
-                  style={styles.singleButton}
-                  adjustsFontSizeToFit
-                  allowFontScaling
-                  maxFontSizeMultiplier={5}
-                >
-                  Register
-                </Text>
+                <Text style={styles.singleButton}>Register</Text>
               </TouchableOpacity>
               {error == "Logged in" ? (
                 <Text style={styles.sucMSG}>{error}</Text>

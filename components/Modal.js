@@ -13,6 +13,7 @@ import InputScrollView from "react-native-input-scroll-view";
 import colours from "../res/colours";
 import * as firebaseRN from "firebase";
 import "firebase/firestore";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 function BottomPopup({ cards, randomIndex, setModalVisible, loggedIn }) {
   const [text, setText] = useState("");
@@ -41,6 +42,28 @@ function BottomPopup({ cards, randomIndex, setModalVisible, loggedIn }) {
       .catch(function (error) {
         console.error("Error adding document: ", error);
       });
+
+  const addData = async () => {
+    try {
+      const storageKey =
+        "DToffline" +
+        Math.random().toString(36).substring(2, 15) +
+        Math.random().toString(36).substring(2, 15);
+      const data = {
+        card: cards[randomIndex].title,
+        imageTarot: cards[randomIndex].imageTarot,
+        imageP5: cards[randomIndex].imageP5,
+        description: cards[randomIndex].description,
+        note: text,
+        timestamp: new Date(),
+      };
+      const dataValue = JSON.stringify(data);
+      await AsyncStorage.setItem(storageKey, dataValue);
+    } catch (e) {
+      // saving error
+    }
+  };
+
   return (
     <View style={styles.modalScreen}>
       <View style={styles.topbar}>
@@ -61,7 +84,8 @@ function BottomPopup({ cards, randomIndex, setModalVisible, loggedIn }) {
                 ? (handleDataPush(),
                   Alert.alert("Publishing Entry"),
                   setModalVisible(false))
-                : (Alert.alert("Saved Entry"), setModalVisible(false));
+                : addData(),
+                (Alert.alert("Saved Entry"), setModalVisible(false));
             }
           }}
         />

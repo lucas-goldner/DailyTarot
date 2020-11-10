@@ -7,6 +7,7 @@ import ToggleSwitch from "rn-toggle-switch";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import * as firebaseRN from "firebase";
 import "firebase/firestore";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 class Toggle extends ToggleSwitch {
   onDragEnd = (e) => {
@@ -59,7 +60,7 @@ function HistoryScreen({ isLoggedIn }) {
   return (
     <View>
       <View style={styles.background}>
-        <ScrollView scrollEventThrottle={16}>
+        <ScrollView style={{ marginTop: 20 }} scrollEventThrottle={16}>
           <View style={styles.entryList}>
             <ScrollView
               horizontal={true}
@@ -121,7 +122,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   entryList: {
-    marginTop: 20,
+    marginTop: 0,
     height: 650,
   },
   historyTitle: {
