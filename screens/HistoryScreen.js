@@ -52,8 +52,14 @@ function HistoryScreen({ isLoggedIn }) {
       const entries = [];
       for (let i = 0; i < entryAmount; i++) {
         //entries.push(<Entry key={i} />);
-        console.log(entriesData[i].card);
+        //console.log(entriesData[i].card);
       }
+    } else {
+      AsyncStorage.getItem("DTofflinek64l7sshm59wckmzpc3f5").then((value) =>
+        value != null
+          ? console.log(JSON.parse(value))
+          : console.log("nothing :(")
+      );
     }
   }, []);
 

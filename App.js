@@ -20,6 +20,7 @@ import firebase from "./res/ApiKey";
 import * as firebaseRN from "firebase";
 import { LogBox } from "react-native";
 import _ from "lodash";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 LogBox.ignoreLogs(["Setting a timer"]);
 const _console = _.clone(console);

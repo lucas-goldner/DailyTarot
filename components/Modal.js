@@ -18,50 +18,50 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 function BottomPopup({ cards, randomIndex, setModalVisible, loggedIn }) {
   const [text, setText] = useState("");
   const [textareaHeight, setTextareaHeight] = useState("");
-  const user = firebaseRN.auth().currentUser.uid;
-  const db = firebaseRN.firestore();
-  const firebase = require("firebase");
-  // Required for side-effects
-  require("firebase/firestore");
 
-  const handleDataPush = () =>
-    db
-      .collection(user)
-      .add({
-        UID: user,
-        card: cards[randomIndex].title,
-        imageTarot: cards[randomIndex].imageTarot,
-        imageP5: cards[randomIndex].imageP5,
-        description: cards[randomIndex].description,
-        note: text,
-        timestamp: new Date(),
-      })
-      .then(function (docRef) {
-        console.log("Document written with ID: ", docRef.id);
-      })
-      .catch(function (error) {
-        console.error("Error adding document: ", error);
-      });
+  if (loggedIn) {
+    const user = firebaseRN.auth().currentUser.uid;
+    const db = firebaseRN.firestore();
+    const firebase = require("firebase");
+    // Required for side-effects
+    require("firebase/firestore");
+
+    const handleDataPush = () =>
+      db
+        .collection(user)
+        .add({
+          UID: user,
+          card: cards[randomIndex].title,
+          imageTarot: cards[randomIndex].imageTarot,
+          imageP5: cards[randomIndex].imageP5,
+          description: cards[randomIndex].description,
+          note: text,
+          timestamp: new Date(),
+        })
+        .then(function (docRef) {
+          console.log("Document written with ID: ", docRef.id);
+        })
+        .catch(function (error) {
+          console.error("Error adding document: ", error);
+        });
+  }
 
   const addData = async () => {
-    try {
-      const storageKey =
-        "DToffline" +
-        Math.random().toString(36).substring(2, 15) +
-        Math.random().toString(36).substring(2, 15);
-      const data = {
-        card: cards[randomIndex].title,
-        imageTarot: cards[randomIndex].imageTarot,
-        imageP5: cards[randomIndex].imageP5,
-        description: cards[randomIndex].description,
-        note: text,
-        timestamp: new Date(),
-      };
-      const dataValue = JSON.stringify(data);
-      await AsyncStorage.setItem(storageKey, dataValue);
-    } catch (e) {
-      // saving error
-    }
+    const storageKey =
+      "DToffline" +
+      Math.random().toString(36).substring(2, 15) +
+      Math.random().toString(36).substring(2, 15);
+    const data = {
+      card: cards[randomIndex].title,
+      imageTarot: cards[randomIndex].imageTarot,
+      imageP5: cards[randomIndex].imageP5,
+      description: cards[randomIndex].description,
+      note: text,
+      timestamp: new Date(),
+    };
+    const dataValue = JSON.stringify(data);
+    await AsyncStorage.setItem(storageKey, dataValue);
+    console.log(storageKey, dataValue);
   };
 
   return (
