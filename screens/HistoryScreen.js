@@ -55,22 +55,24 @@ function HistoryScreen({ isLoggedIn }) {
         //console.log(entriesData[i].card);
       }
     } else {
-      AsyncStorage.getItem("DTofflinek64l7sshm59wckmzpc3f5").then((value) => {
-        if (value != null) {
-          const jsonValue = JSON.parse(value);
-          console.log();
-          setEntriesData([
-            {
-              card: jsonValue.card,
-              description: jsonValue.description,
-              imageP5: jsonValue.imageP5,
-              imageTarot: jsonValue.imageTarot,
-              note: jsonValue.note,
-            },
-          ]);
-        } else {
-          console.log("nothing");
-        }
+      AsyncStorage.getAllKeys().then((values) => {
+        const key = values;
+        AsyncStorage.multiGet(key).then((items) => {
+          for (let i = 0; i <= key.length - 1; i++) {
+            let item = JSON.parse(items[i][1]);
+            console.log(item);
+            setEntriesData((oldEntries) => [
+              ...oldEntries,
+              {
+                card: item.card,
+                description: item.description,
+                imageP5: item.imageP5,
+                imageTarot: item.imageTarot,
+                note: item.note,
+              },
+            ]);
+          }
+        });
       });
     }
   }, []);
