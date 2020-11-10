@@ -55,11 +55,23 @@ function HistoryScreen({ isLoggedIn }) {
         //console.log(entriesData[i].card);
       }
     } else {
-      AsyncStorage.getItem("DTofflinek64l7sshm59wckmzpc3f5").then((value) =>
-        value != null
-          ? console.log(JSON.parse(value))
-          : console.log("nothing :(")
-      );
+      AsyncStorage.getItem("DTofflinek64l7sshm59wckmzpc3f5").then((value) => {
+        if (value != null) {
+          const jsonValue = JSON.parse(value);
+          console.log();
+          setEntriesData([
+            {
+              card: jsonValue.card,
+              description: jsonValue.description,
+              imageP5: jsonValue.imageP5,
+              imageTarot: jsonValue.imageTarot,
+              note: jsonValue.note,
+            },
+          ]);
+        } else {
+          console.log("nothing");
+        }
+      });
     }
   }, []);
 
