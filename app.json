@@ -20,15 +20,13 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true,
-      "bundleIdentifier": "lucasgoldner.dailytarot"
+      "supportsTablet": true
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
-      },
-      "package": "lucasgoldner.dailytarot"
+      }
     },
     "web": {
       "favicon": "./assets/favicon.png"

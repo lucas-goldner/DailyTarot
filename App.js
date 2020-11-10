@@ -16,6 +16,18 @@ import CardScreen from "./screens/CardScreen";
 import HistoryScreen from "./screens/HistoryScreen";
 import ModalScreen from "./components/Modal";
 import SettingsScreen from "./components/Settings";
+import firebase from "./res/ApiKey";
+import * as firebaseRN from "firebase";
+import { LogBox } from "react-native";
+import _ from "lodash";
+
+LogBox.ignoreLogs(["Setting a timer"]);
+const _console = _.clone(console);
+console.warn = (message) => {
+  if (message.indexOf("Setting a timer") <= -1) {
+    _console.warn(message);
+  }
+};
 
 const Tab = createMaterialBottomTabNavigator();
 
@@ -50,6 +62,14 @@ export default function App() {
   const setActionColourChangeToFalse = () => {
     setActionColourChange(false);
   };
+
+  firebaseRN.auth().onAuthStateChanged(function (user) {
+    if (user) {
+      setLoggedIn(true);
+    } else {
+      setLoggedIn(false);
+    }
+  });
 
   return (
     <NavigationContainer>

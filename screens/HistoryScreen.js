@@ -5,6 +5,8 @@ import Svg, { Path } from "react-native-svg";
 import Entry from "../components/Entry";
 import ToggleSwitch from "rn-toggle-switch";
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import * as firebaseRN from "firebase";
+import "firebase/firestore";
 
 class Toggle extends ToggleSwitch {
   onDragEnd = (e) => {
@@ -28,6 +30,29 @@ function HistoryScreen({ isLoggedIn }) {
   const handleChange = (val) => {
     setviewType(val);
   };
+  const user = firebaseRN.auth().currentUser.uid;
+  const db = firebaseRN.firestore();
+  const firebase = require("firebase");
+
+  useEffect(() => {
+    db.collection(user)
+      .get()
+      .then(function (querySnapshot) {
+        setEntryAmount(querySnapshot.size);
+        console.log("-----------------");
+        querySnapshot.forEach(function (doc) {
+          console.log(doc.id, " => ", doc.data());
+          setEntriesData((oldEntries) => [...oldEntries, doc.data()]);
+        });
+      });
+
+    console.log(entryAmount);
+    const entries = [];
+    for (let i = 0; i < entryAmount; i++) {
+      //entries.push(<Entry key={i} />);
+      console.log(entriesData[i].card);
+    }
+  }, []);
 
   return (
     <View>
@@ -40,7 +65,15 @@ function HistoryScreen({ isLoggedIn }) {
             >
               {entriesData.map(
                 (
-                  { UID, card, description, imageP5, imageTarot, note },
+                  {
+                    UID,
+                    card,
+                    description,
+                    imageP5,
+                    imageTarot,
+                    note,
+                    timestamp,
+                  },
                   index
                 ) => {
                   return (
