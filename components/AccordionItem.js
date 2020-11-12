@@ -32,7 +32,7 @@ class Toggle extends ToggleSwitch {
   onDragStart = () => {};
 }
 
-function AccordionItem({ type, isLoggedIn, entriesData }) {
+function AccordionItem({ type, isLoggedIn, entriesData, setEntriesData }) {
   const [currentyLogin, setCurrentyLogin] = useState(isLoggedIn);
   const keyboardVerticalOffset = Platform.OS === "ios" ? 100 : 0;
   const [cardType, setcardType] = useState(true);
@@ -96,10 +96,24 @@ function AccordionItem({ type, isLoggedIn, entriesData }) {
       });
   };
 
+  const readFile = async () => {
+    const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+    if (status === "granted") {
+      let fileUri = FileSystem.documentDirectory + "entries.txt";
+      await FileSystem.readAsStringAsync(fileUri, {
+        encoding: FileSystem.EncodingType.UTF8,
+      })
+        .then((data) => {
+          setEntriesData(JSON.parse(data));
+        })
+        .catch((error) => console.log(error));
+    }
+  };
+
   const saveFile = async () => {
     const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
     if (status === "granted") {
-      let fileUri = FileSystem.documentDirectory + "text2.txt";
+      let fileUri = FileSystem.documentDirectory + "entries.txt";
       await FileSystem.writeAsStringAsync(
         fileUri,
         JSON.stringify(entriesData),
@@ -179,10 +193,7 @@ function AccordionItem({ type, isLoggedIn, entriesData }) {
           >
             <Text style={styles.singleButton}>Import with account</Text>
           </TouchableOpacity>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => Alert.alert("Hex")}
-          >
+          <TouchableOpacity style={styles.button} onPress={() => readFile()}>
             <Text style={styles.singleButton}>Import with file</Text>
           </TouchableOpacity>
         </View>

@@ -52,7 +52,7 @@ const items = [
   },
 ];
 
-function SettingsScreen({ isLoggedIn, entriesData }) {
+function SettingsScreen({ isLoggedIn, entriesData, setEntriesData }) {
   const [currentIndex, setCurrentIndex] = useState(null);
   const ref = useRef();
   return (
@@ -86,6 +86,7 @@ function SettingsScreen({ isLoggedIn, entriesData }) {
                       type={type}
                       isLoggedIn={isLoggedIn}
                       entriesData={entriesData}
+                      setEntriesData={setEntriesData}
                     />
                   </View>
                 )}
