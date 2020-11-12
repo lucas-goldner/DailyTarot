@@ -63,13 +63,11 @@ export default function App() {
     const newRandomIndex = "" + Math.round(Math.random() * 1);
     AsyncStorage.getItem("curDay").then((value) =>
       day === value
-        ? (console.log("same day"),
-          AsyncStorage.getItem("randomIndex").then((value) =>
+        ? (AsyncStorage.getItem("randomIndex").then((value) =>
             setRandomIndex(value)
           ),
           setRandomIndex(1))
-        : (console.log("not same day"),
-          AsyncStorage.setItem("curDay", day),
+        : (AsyncStorage.setItem("curDay", day),
           AsyncStorage.setItem("randomIndex", newRandomIndex),
           setRandomIndex(newRandomIndex))
     );

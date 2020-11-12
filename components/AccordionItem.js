@@ -118,7 +118,6 @@ function AccordionItem({ type, isLoggedIn, entriesData, setEntriesData }) {
               JSON.stringify(element),
             ]);
           });
-          console.log(writeArray);
 
           AsyncStorage.multiSet(writeArray);
 
@@ -153,8 +152,9 @@ function AccordionItem({ type, isLoggedIn, entriesData, setEntriesData }) {
       .then(function (querySnapshot) {
         console.log("-----------------");
         querySnapshot.forEach(function (doc) {
-          console.log(doc.id, " => ", doc.data());
           setEntriesData((oldEntries) => [...oldEntries, doc.data()]);
+          console.log(doc.id, " => ", doc.data());
+          AsyncStorage.setItem(doc.id.toString(), JSON.stringify(doc.data()));
         });
       });
   };
