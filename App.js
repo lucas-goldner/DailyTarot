@@ -104,11 +104,81 @@ const cards = [
       "The Hermit often suggests a need for time alone, a period of reflection when distractions are limited. In times of action and high energy, he stands for the still center that must be created for balance.",
   },
   {
-    title: "Wheel of fortune",
+    title: "Wheel Of Fortune",
     imageTarot: require("./assets/tarot/major10.jpg"),
     imageP5: require("./assets/p5/major10.jpg"),
     description:
       "The Wheel of Fortune also represents unexpected encounters and twists of fate. It often suggests wheel-like actions, changes in direction, repeating cycles and rapid movement. When the energy arrives, you will feel life speed up.",
+  },
+  {
+    title: "Justice",
+    imageTarot: require("./assets/tarot/major11.jpg"),
+    imageP5: require("./assets/p5/major11.jpg"),
+    description:
+      "Justice often appears when you are concerned with doing what is right or making sure you receive your due. This card can also appear when you are feeling the impact of a past mistake or good deed.",
+  },
+  {
+    title: "The Hanged Man",
+    imageTarot: require("./assets/tarot/major12.jpg"),
+    imageP5: require("./assets/p5/major12.jpg"),
+    description:
+      "In readings, the Hanged Man reminds us that the best approach to a problem is not always the most obvious. For example when we most want to force our will on someone, that is when we should release.",
+  },
+  {
+    title: "Death",
+    imageTarot: require("./assets/tarot/major13.jpg"),
+    imageP5: require("./assets/p5/major13.jpg"),
+    description:
+      "Death rarely has anything to do with physical death. Death often represents an important ending that will initiate great change. It signals the end of an era, but sometimes also a relief",
+  },
+  {
+    title: "Temperance",
+    imageTarot: require("./assets/tarot/major14.jpg"),
+    imageP5: require("./assets/p5/major14.jpg"),
+    description:
+      "To be temperate is to show moderation and self-restraint. This card can also indicate a need for balance. In conflict situations, Temperance suggests that compromise and cooperation are vital.",
+  },
+  {
+    title: "The Devil",
+    imageTarot: require("./assets/tarot/major15.jpg"),
+    imageP5: require("./assets/p5/major15.jpg"),
+    description:
+      "This card shows you that you are caught in an unhealthy, unproductive situation. You may be obsessed by a person, idea, substance or pattern that is bad for you. Hold to the highest vision of who you are.",
+  },
+  {
+    title: "The Tower",
+    imageTarot: require("./assets/tarot/major16.jpg"),
+    imageP5: require("./assets/p5/major16.jpg"),
+    description:
+      "The Tower is an unsettling card. It represents a sudden, dramatic upheaval or reversal in fortune. Recognize that the disruption occurred because it was needed. Try to find the positive in it.",
+  },
+  {
+    title: "The Star",
+    imageTarot: require("./assets/tarot/major17.jpg"),
+    imageP5: require("./assets/p5/major17.jpg"),
+    description:
+      "The Star is inspiring, but it is not a card of practical solutions or final answers. Your goals and your aspirations are blessed, but to realize them, you must take positive action.",
+  },
+  {
+    title: "The Moon",
+    imageTarot: require("./assets/tarot/major18.jpg"),
+    imageP5: require("./assets/p5/major18.jpg"),
+    description:
+      "This card often stands for fears and anxieties. It also stands for illusions. It is easy to lose our way in the moonlight. Be careful not to let deceptions and false ideas lead you astray.",
+  },
+  {
+    title: "The Sun",
+    imageTarot: require("./assets/tarot/major19.jpg"),
+    imageP5: require("./assets/p5/major19.jpg"),
+    description:
+      "You will understand Card 19 if you imagine yourself to be a Sun God. You have total confidence in yourself. You are not cocky, but sure of your power. You will be successful at all you undertake.",
+  },
+  {
+    title: "Judgement",
+    imageTarot: require("./assets/tarot/major20.jpg"),
+    imageP5: require("./assets/p5/major20.jpg"),
+    description:
+      "The Sun stands for the feelings that come with salvation. You are reborn, cleansed of all guilts and burdens. The past and its mistakes are behind you, and you are ready to begin anew.",
   },
 ];
 
