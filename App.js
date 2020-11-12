@@ -383,6 +383,104 @@ const cards = [
     description:
       "King of Cups is a combination of the positive water energy of the Cups suit and the active, outward focus of a King. He is wise and understanding, with a deep knowledge of the world that comes from the heart.",
   },
+  {
+    title: "Ace Of Swords",
+    imageTarot: require("./assets/tarot/swords01.jpg"),
+    imageP5: require("./assets/p5/swords01.jpg"),
+    description:
+      "The Ace of Swords is a symbol of possibility in the area of intelligence, reason, justice, truth, clarity and fortitude. Sometimes this Ace stands for a challenge that will test you in some way.",
+  },
+  {
+    title: "Two Of Swords",
+    imageTarot: require("./assets/tarot/swords02.jpg"),
+    imageP5: require("./assets/p5/swords02.jpg"),
+    description:
+      "Two of Swords is about the barriers we put up between ourselves and others and those we create within ourselves. Internally, we block off emotions and refuse to feel them.",
+  },
+  {
+    title: "Three Of Swords",
+    imageTarot: require("./assets/tarot/swords03.jpg"),
+    imageP5: require("./assets/p5/swords03.jpg"),
+    description:
+      "Three of Swords clearly describes this sudden pain. You literally feel as if someone has taken a sharp object and jabbed it through your heart. Even something as minor as a snippy remark can feel this way.",
+  },
+  {
+    title: "Four Of Swords",
+    imageTarot: require("./assets/tarot/swords04.jpg"),
+    imageP5: require("./assets/p5/swords04.jpg"),
+    description:
+      "The Four of Swords is often a sign that you need to slow down and get some rest. If you are recovering from an illness, allow yourself quiet time to heal.",
+  },
+  {
+    title: "Five Of Swords",
+    imageTarot: require("./assets/tarot/swords05.jpg"),
+    imageP5: require("./assets/p5/swords05.jpg"),
+    description:
+      "The Five of Swords is about self-interest. It also represents hostility, from a cross word to warfare. When the cords that bind us are broken, we experience dis-cord.",
+  },
+  {
+    title: "Six Of Swords",
+    imageTarot: require("./assets/tarot/swords06.jpg"),
+    imageP5: require("./assets/p5/swords06.jpg"),
+    description:
+      "The Six of Swords can indicate travel and moves of all kinds. This could mean an actual change of scene, relocation or trip, but not necessarily.",
+  },
+  {
+    title: "Seven Of Swords",
+    imageTarot: require("./assets/tarot/swords07.jpg"),
+    imageP5: require("./assets/p5/swords07.jpg"),
+    description:
+      "The Seven of Swords can be a sign that you or someone else wants to be a lone wolf. You feel that you will be more effective and comfortable on your own.",
+  },
+  {
+    title: "Eight Of Swords",
+    imageTarot: require("./assets/tarot/swords08.jpg"),
+    imageP5: require("./assets/p5/swords08.jpg"),
+    description:
+      "The Eight of Swords is often a sign that you are heading toward (or already in) a situation in which you will feel a lack of freedom and choice.",
+  },
+  {
+    title: "Nine Of Swords",
+    imageTarot: require("./assets/tarot/swords09.jpg"),
+    imageP5: require("./assets/p5/swords09.jpg"),
+    description:
+      "The Nine of Swords represents the pain that we generate from within. What tortures we put ourselves through when our fears and doubts overwhelm us. Worry is probably the most common.",
+  },
+  {
+    title: "Ten Of Swords",
+    imageTarot: require("./assets/tarot/swords10.jpg"),
+    imageP5: require("./assets/p5/swords10.jpg"),
+    description:
+      "Ten of Swords appears to be a card of terrible misfortune, but surprisingly, it often represents troubles that are more melodramatic than real. One meaning of the Ten of Swords is hitting rock bottom.",
+  },
+  {
+    title: "Page Of Swords",
+    imageTarot: require("./assets/tarot/swords11.jpg"),
+    imageP5: require("./assets/p5/swords11.jpg"),
+    description:
+      "The Page of Swords asks you to embrace these difficult situations. Think of them as trials designed to test your mettle. If you accept and prevail, you will become stronger and more resilient.",
+  },
+  {
+    title: "Knight Of Swords",
+    imageTarot: require("./assets/tarot/swords12.jpg"),
+    imageP5: require("./assets/p5/swords12.jpg"),
+    description:
+      "The Knight of Swords is a master of logic and reason. He has a keen intellect that grasps the fine points of any subject. His judgments are sure and free of emotion.",
+  },
+  {
+    title: "Queen Of Swords",
+    imageTarot: require("./assets/tarot/swords13.jpg"),
+    imageP5: require("./assets/p5/swords13.jpg"),
+    description:
+      "The Queen of Swords asks you to think and feel as she does. For example: Are you being completely honest? Have you figured out what's really going on? Are you letting yourself be fooled?",
+  },
+  {
+    title: "King Of Swords",
+    imageTarot: require("./assets/tarot/swords14.jpg"),
+    imageP5: require("./assets/p5/swords14.jpg"),
+    description:
+      "He is a man of intellect who can absorb and work with information of all kinds. As a master of reason and logic, he analyzes any problem with ease and works out solutions quickly.",
+  },
 ];
 
 export default function App() {
