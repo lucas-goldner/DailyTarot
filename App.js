@@ -47,6 +47,69 @@ const cards = [
     description:
       "The Magician is the archetype of the active, masculine principle - the ultimate achiever. He symbolizes the power to tap universal forces and use them for creative purposes. He is not afraid to act and believes in himself.",
   },
+  {
+    title: "The High Priestess",
+    imageTarot: require("./assets/tarot/major02.jpg"),
+    imageP5: require("./assets/p5/major02.jpg"),
+    description:
+      "The High Priestess is the feminine principle that balances the masculine force of the Magician. She poses a challenge to you to go deeper - to look beyond the obvious, surface situation to what is hidden and obscure.",
+  },
+  {
+    title: "The Empress",
+    imageTarot: require("./assets/tarot/major03.jpg"),
+    imageP5: require("./assets/p5/major03.jpg"),
+    description:
+      "The Empress represents the fertile, life-giving Mother. She can suggest material reward, but only with the understanding that riches go with a generous and open spirit. She asks you to embrace the principle of life and enjoy its goodness.",
+  },
+  {
+    title: "The Emperor",
+    imageTarot: require("./assets/tarot/major04.jpg"),
+    imageP5: require("./assets/p5/major04.jpg"),
+    description:
+      "The Emperor can represent an encounter with authority or the assumption of power and control. He is often associated with legal matters, but he can also stand for an archetypal Father in his role as guide, protector and provider.",
+  },
+  {
+    title: "The Hierophant",
+    imageTarot: require("./assets/tarot/major05.jpg"),
+    imageP5: require("./assets/p5/major05.jpg"),
+    description:
+      "The Hierophant represents learning with experts or knowledgeable teachers. His appearance can show that you are struggling with a force that is not innovative or free-spirited. He is a symbol of the need to conform to rules or fixed situations.",
+  },
+  {
+    title: "The Lovers",
+    imageTarot: require("./assets/tarot/major06.jpg"),
+    imageP5: require("./assets/p5/major06.jpg"),
+    description:
+      "Love and sex are riveting subjects, and, as you'd expect, this card represents both. It can indicate a moral or ethical crossroads - a decision point where you must choose between the high road or the low road",
+  },
+  {
+    title: "The Chariot",
+    imageTarot: require("./assets/tarot/major07.jpg"),
+    imageP5: require("./assets/p5/major07.jpg"),
+    description:
+      "The Chariot often appears when hard control is or could be in evidence. It is backed up by a strong will and great confidence. The Chariot can mean self-control or control of the environment. This card also represents victory.",
+  },
+  {
+    title: "The Strength",
+    imageTarot: require("./assets/tarot/major08.jpg"),
+    imageP5: require("./assets/p5/major08.jpg"),
+    description:
+      "Usually we think of strength in physical terms, but there is also inner strength. Strength also represents patience and compassion. It will appear in a reading when its qualities are needed. It can be a reminder not to despair or give up.",
+  },
+  {
+    title: "The Hermit",
+    imageTarot: require("./assets/tarot/major09.jpg"),
+    imageP5: require("./assets/p5/major09.jpg"),
+    description:
+      "The Hermit often suggests a need for time alone, a period of reflection when distractions are limited. In times of action and high energy, he stands for the still center that must be created for balance.",
+  },
+  {
+    title: "Wheel of fortune",
+    imageTarot: require("./assets/tarot/major10.jpg"),
+    imageP5: require("./assets/p5/major10.jpg"),
+    description:
+      "The Wheel of Fortune also represents unexpected encounters and twists of fate. It often suggests wheel-like actions, changes in direction, repeating cycles and rapid movement. When the energy arrives, you will feel life speed up.",
+  },
 ];
 
 export default function App() {
