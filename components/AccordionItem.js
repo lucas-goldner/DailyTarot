@@ -45,7 +45,7 @@ function AccordionItem({ type, isLoggedIn, entriesData, setEntriesData }) {
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [importError, setImportError] = useState("");
+  const [importMessage, setImportMessage] = useState("");
   const isInvalid = password === "" || emailAddress === "";
 
   const handleSignup = (event) => {
@@ -123,6 +123,7 @@ function AccordionItem({ type, isLoggedIn, entriesData, setEntriesData }) {
           AsyncStorage.multiSet(writeArray);
 
           setEntriesData(jsonData);
+          setImportMessage("Imported data from file");
         })
         .catch((error) => console.log(error));
     }
@@ -151,12 +152,12 @@ function AccordionItem({ type, isLoggedIn, entriesData, setEntriesData }) {
     db.collection(user)
       .get()
       .then(function (querySnapshot) {
-        console.log("-----------------");
         querySnapshot.forEach(function (doc) {
           setEntriesData((oldEntries) => [...oldEntries, doc.data()]);
           console.log(doc.id, " => ", doc.data());
           AsyncStorage.setItem(doc.id.toString(), JSON.stringify(doc.data()));
         });
+        setImportMessage("Imported data from firebase");
       });
   };
 
@@ -226,7 +227,7 @@ function AccordionItem({ type, isLoggedIn, entriesData, setEntriesData }) {
             onPress={() => {
               isLoggedIn
                 ? loadDataFromFirebase()
-                : setImportError("Not logged in");
+                : setImportMessage("Not logged in");
             }}
           >
             <Text style={styles.singleButton}>Import with account</Text>
@@ -234,8 +235,12 @@ function AccordionItem({ type, isLoggedIn, entriesData, setEntriesData }) {
           <TouchableOpacity style={styles.button} onPress={() => readFile()}>
             <Text style={styles.singleButton}>Import with file</Text>
           </TouchableOpacity>
-          {importError == "Not logged in" ? (
-            <Text style={styles.errorMSG}>{importError}</Text>
+          {importMessage == "Not logged in" ? (
+            <Text style={styles.errorMSG}>{importMessage}</Text>
+          ) : importMessage == "Imported data from firebase" ? (
+            <Text style={styles.sucMSG}>{importMessage}</Text>
+          ) : importMessage == "Imported data from file" ? (
+            <Text style={styles.sucMSG}>{importMessage}</Text>
           ) : (
             <></>
           )}
@@ -247,15 +252,19 @@ function AccordionItem({ type, isLoggedIn, entriesData, setEntriesData }) {
             onPress={() => {
               isLoggedIn
                 ? loadDataFromFirebase()
-                : setImportError("Not logged in");
+                : setImportMessage("Not logged in");
             }}
           >
             <Text style={styles.singleButton}>Import with account</Text>
           </TouchableOpacity>
-          {importError == "Not logged in" ? (
-            <Text style={styles.sucMSG}>{importError}</Text>
+          {importMessage == "Not logged in" ? (
+            <Text style={styles.errorMSG}>{importMessage}</Text>
+          ) : importMessage == "Imported data from firebase" ? (
+            <Text style={styles.sucMSG}>{importMessage}</Text>
+          ) : importMessage == "Imported data from file" ? (
+            <Text style={styles.sucMSG}>{importMessage}</Text>
           ) : (
-            <> </>
+            <></>
           )}
         </View>
       ) : type == "export" ? (
