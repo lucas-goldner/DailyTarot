@@ -53,13 +53,29 @@ export default function App() {
   const [modalVisible, setModalVisible] = useState(false);
   const [settingsVisible, setSettingsVisible] = useState(false);
   const [actionColourChange, setActionColourChange] = useState(false);
-  const randomIndex = Math.round(Math.random() * 1);
+  const [randomIndex, setRandomIndex] = useState(1);
   const [personaCard, setPersonaCards] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [entriesData, setEntriesData] = useState([]);
 
   useEffect(() => {
+    const day = "" + new Date().getDay();
+    AsyncStorage.getItem("curDay").then((value) =>
+      day === value
+        ? console.log("same day")
+        : (console.log("not same day"), AsyncStorage.setItem("curDay", day))
+    );
     AsyncStorage.getAllKeys().then((values) => {
+      for (let i = 0; i < values.length; i++) {
+        if (values[i] === "curDay") {
+          values.splice(i, 1);
+        }
+      }
+      for (let i = 0; i < values.length; i++) {
+        if (values[i] === "randomIndex") {
+          values.splice(i, 1);
+        }
+      }
       const key = values;
       AsyncStorage.multiGet(key).then((items) => {
         for (let i = 0; i <= key.length - 1; i++) {
