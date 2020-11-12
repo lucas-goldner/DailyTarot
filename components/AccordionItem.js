@@ -41,7 +41,7 @@ function AccordionItem({ type, isLoggedIn, entriesData, setEntriesData }) {
   const handleChange = (val) => {
     setcardType(val);
   };
-
+  const [sure, setSure] = useState(false);
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
@@ -218,7 +218,7 @@ function AccordionItem({ type, isLoggedIn, entriesData, setEntriesData }) {
             </>
           )}
         </View>
-      ) : type == "import" ? (
+      ) : type == "import android" ? (
         <View style={styles.itemView}>
           <TouchableOpacity
             style={styles.button}
@@ -230,11 +230,64 @@ function AccordionItem({ type, isLoggedIn, entriesData, setEntriesData }) {
             <Text style={styles.singleButton}>Import with file</Text>
           </TouchableOpacity>
         </View>
+      ) : type == "import ios" ? (
+        <View style={styles.itemView}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => loadDataFromFirebase()}
+          >
+            <Text style={styles.singleButton}>Import with account</Text>
+          </TouchableOpacity>
+        </View>
       ) : type == "export" ? (
         <View style={styles.itemView}>
           <TouchableOpacity style={styles.button} onPress={() => saveFile()}>
             <Text style={styles.singleButton}>Export to file</Text>
           </TouchableOpacity>
+        </View>
+      ) : type == "reset" ? (
+        <View style={styles.itemView}>
+          {sure ? (
+            <View style={styles.itemView}>
+              <TouchableOpacity
+                style={{
+                  ...styles.button,
+                  backgroundColor: "red",
+                }}
+                onPress={() => (
+                  setSure((sure) => !sure),
+                  AsyncStorage.clear(),
+                  setEntriesData([])
+                )}
+              >
+                <Text
+                  style={{ ...styles.singleButton, backgroundColor: "red" }}
+                >
+                  Yes please delete all!
+                </Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={{
+                  ...styles.button,
+                  backgroundColor: "green",
+                }}
+                onPress={() => setSure((sure) => !sure)}
+              >
+                <Text
+                  style={{ ...styles.singleButton, backgroundColor: "green" }}
+                >
+                  Cancel
+                </Text>
+              </TouchableOpacity>
+            </View>
+          ) : (
+            <TouchableOpacity
+              style={styles.button}
+              onPress={() => setSure((sure) => !sure)}
+            >
+              <Text style={styles.singleButton}>Reset Entries</Text>
+            </TouchableOpacity>
+          )}
         </View>
       ) : type == "theme" ? (
         <View style={styles.itemView}>

@@ -28,12 +28,17 @@ const Androiditems = [
   },
   {
     category: "Import Entries",
-    type: "import",
+    type: "import android",
     marginTop: 10,
   },
   {
     category: "Export Entries",
     type: "export",
+    marginTop: 10,
+  },
+  {
+    category: "Reset Entries",
+    type: "reset",
     marginTop: 10,
   },
   {
@@ -52,6 +57,16 @@ const IOSItem = [
   {
     category: "Login / Register",
     type: "login",
+    marginTop: 10,
+  },
+  {
+    category: "Import Entries",
+    type: "import ios",
+    marginTop: 10,
+  },
+  {
+    category: "Reset Entries",
+    type: "reset",
     marginTop: 10,
   },
   {
