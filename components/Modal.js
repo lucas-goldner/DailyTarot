@@ -62,11 +62,11 @@ function BottomPopup({
       imageP5: cards[randomIndex].imageP5,
       description: cards[randomIndex].description,
       note: text,
-      timestamp: ("" + new Date()).slice(0, 21),
+      timestamp: "" + new Date(),
     };
     const dataValue = JSON.stringify(data);
     await AsyncStorage.setItem(storageKey, dataValue).then(
-      setEntriesData((oldEntries) => [...oldEntries, data])
+      setEntriesData((oldEntries) => [data, ...oldEntries])
     );
   };
 
