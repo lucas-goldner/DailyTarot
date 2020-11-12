@@ -45,6 +45,7 @@ function AccordionItem({ type, isLoggedIn, entriesData, setEntriesData }) {
   const [emailAddress, setEmailAddress] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [importError, setImportError] = useState("");
   const isInvalid = password === "" || emailAddress === "";
 
   const handleSignup = (event) => {
@@ -222,22 +223,40 @@ function AccordionItem({ type, isLoggedIn, entriesData, setEntriesData }) {
         <View style={styles.itemView}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => loadDataFromFirebase()}
+            onPress={() => {
+              isLoggedIn
+                ? loadDataFromFirebase()
+                : setImportError("Not logged in");
+            }}
           >
             <Text style={styles.singleButton}>Import with account</Text>
           </TouchableOpacity>
           <TouchableOpacity style={styles.button} onPress={() => readFile()}>
             <Text style={styles.singleButton}>Import with file</Text>
           </TouchableOpacity>
+          {importError == "Not logged in" ? (
+            <Text style={styles.errorMSG}>{importError}</Text>
+          ) : (
+            <></>
+          )}
         </View>
       ) : type == "import ios" ? (
         <View style={styles.itemView}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => loadDataFromFirebase()}
+            onPress={() => {
+              isLoggedIn
+                ? loadDataFromFirebase()
+                : setImportError("Not logged in");
+            }}
           >
             <Text style={styles.singleButton}>Import with account</Text>
           </TouchableOpacity>
+          {importError == "Not logged in" ? (
+            <Text style={styles.sucMSG}>{importError}</Text>
+          ) : (
+            <> </>
+          )}
         </View>
       ) : type == "export" ? (
         <View style={styles.itemView}>
