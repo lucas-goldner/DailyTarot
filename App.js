@@ -285,6 +285,104 @@ const cards = [
     description:
       "The King of Wands asks you to take the kinds of actions he might take. This King can also represent a man or woman who is acting as he does, or an atmosphere of excitement, daring and drama.",
   },
+  {
+    title: "Ace Of Cups",
+    imageTarot: require("./assets/tarot/cups01.jpg"),
+    imageP5: require("./assets/p5/cups01.jpg"),
+    description:
+      "Ace of Cups shows is a symbol of possibility in the area of deep feelings, compassion and love. It shows that a seed of emotional awareness has been planted in your life although you may not recognize it.",
+  },
+  {
+    title: "Two Of Cups",
+    imageTarot: require("./assets/tarot/cups02.jpg"),
+    imageP5: require("./assets/p5/cups02.jpg"),
+    description:
+      "The Two of Cups has a deeper meaning as well. Whenever two forces are drawn together, there is the potential for bonding. It also stands for the union of any two entities - people, groups, ideas, or talents.",
+  },
+  {
+    title: "Three Of Cups",
+    imageTarot: require("./assets/tarot/cups03.jpg"),
+    imageP5: require("./assets/p5/cups03.jpg"),
+    description:
+      "The Three of Cups can signify a friend or the feelings associated with friendship. Examine your attachments to the groups in your life from an emotional point of view. Consider reaching out to give or receive help.",
+  },
+  {
+    title: "Four Of Cups",
+    imageTarot: require("./assets/tarot/cups04.jpg"),
+    imageP5: require("./assets/p5/cups04.jpg"),
+    description:
+      "This card can represent a positive period of self-reflection and renewal. Sometimes it is a sign of apathy. You don't really care much about anything. Your life seems stale and flat because you've lost interest in activities.",
+  },
+  {
+    title: "Five Of Cups",
+    imageTarot: require("./assets/tarot/cups05.jpg"),
+    imageP5: require("./assets/p5/cups05.jpg"),
+    description:
+      "This card is about loss. It can alert you to the possibility of a loss and its associated emotions sorrow, regret, denial. The loss could be great or small. Loss hurts because it is our emotional resistance to change.",
+  },
+  {
+    title: "Six Of Cups",
+    imageTarot: require("./assets/tarot/cups06.jpg"),
+    imageP5: require("./assets/p5/cups06.jpg"),
+    description:
+      "The Six of Cups also represents innocence, a word with many shades of meaning. You can be innocent in the strictly legal sense of lack of guilt. It embraces all of childhood and the feelings we associate with youth.",
+  },
+  {
+    title: "Seven Of Cups",
+    imageTarot: require("./assets/tarot/cups07.jpg"),
+    imageP5: require("./assets/p5/cups07.jpg"),
+    description:
+      "When the Seven of Cups appears, it is important to look at how disordered your situation is. Perhaps you need to let things fall apart a little. When a rigid system breaks up, there can be a tremendous release of creativity.",
+  },
+  {
+    title: "Eight Of Cups",
+    imageTarot: require("./assets/tarot/cups08.jpg"),
+    imageP5: require("./assets/p5/cups08.jpg"),
+    description:
+      "The Eight of Cups stands for those moments when we realize, once and for all, that the past is gone. The signs of change are in our face, and we must accept them. It is time to move on.",
+  },
+  {
+    title: "Nine Of Cups",
+    imageTarot: require("./assets/tarot/cups09.jpg"),
+    imageP5: require("./assets/p5/cups09.jpg"),
+    description:
+      "The Nine of Cups indicates contentment with the way things are. This card encourages you to seek out pleasure and enjoy your body in every way. It is a sign of delight in all the senses. Sights, sounds, tastes, feelings.",
+  },
+  {
+    title: "Ten Of Cups",
+    imageTarot: require("./assets/tarot/cups10.jpg"),
+    imageP5: require("./assets/p5/cups10.jpg"),
+    description:
+      "When you see the Ten of Cups, know that an end to hostility is possible. If there is fighting around you, it may cease. If you are at war with yourself, you may find peace.",
+  },
+  {
+    title: "Page Of Cups",
+    imageTarot: require("./assets/tarot/cups11.jpg"),
+    imageP5: require("./assets/p5/cups11.jpg"),
+    description:
+      "Page of Cups is Cupid bringing you opportunities for love. He delivers real chances to experience romance, deep feelings and the inner life - the wonders of the Cups suit.",
+  },
+  {
+    title: "Knight Of Cups",
+    imageTarot: require("./assets/tarot/cups12.jpg"),
+    imageP5: require("./assets/p5/cups12.jpg"),
+    description:
+      "The Knight of Cups is a sensitive soul. He is a poet a lover of all things romantic and refined. He uses his imagination in wondrous ways and taps the deepest levels of emotion.",
+  },
+  {
+    title: "Queen Of Cups",
+    imageTarot: require("./assets/tarot/cups13.jpg"),
+    imageP5: require("./assets/p5/cups13.jpg"),
+    description:
+      "This Queen can also represent a man or woman who is like her, or an atmosphere of gentle love, acceptance and respect for feelings. She tells you that her special energy has meaning for you at this time.",
+  },
+  {
+    title: "King Of Cups",
+    imageTarot: require("./assets/tarot/cups14.jpg"),
+    imageP5: require("./assets/p5/cups14.jpg"),
+    description:
+      "King of Cups is a combination of the positive water energy of the Cups suit and the active, outward focus of a King. He is wise and understanding, with a deep knowledge of the world that comes from the heart.",
+  },
 ];
 
 export default function App() {
