@@ -180,13 +180,120 @@ const cards = [
     description:
       "The Sun stands for the feelings that come with salvation. You are reborn, cleansed of all guilts and burdens. The past and its mistakes are behind you, and you are ready to begin anew.",
   },
+  {
+    title: "The World",
+    imageTarot: require("./assets/tarot/major21.jpg"),
+    imageP5: require("./assets/p5/major21.jpg"),
+    description:
+      "The World represents these moments and all that goes into them. In readings, it is a very positive sign that you are in a position to realize your heart's desire.",
+  },
+  {
+    title: "Ace Of Wands",
+    imageTarot: require("./assets/tarot/clubs01.jpg"),
+    imageP5: require("./assets/p5/clubs01.jpg"),
+    description:
+      "This card is a symbol of possibility in the area of creativity, adventure, courage and personal power. It shows that a seed of enthusiasm has been planted in your life although you may not recognize.",
+  },
+  {
+    title: "Two Of Wands",
+    imageTarot: require("./assets/tarot/clubs02.jpg"),
+    imageP5: require("./assets/p5/clubs02.jpg"),
+    description:
+      "The Two of Wands glorifies individual courage and greatness and indicates that power is a major issue in the situation. You or someone else has/wants it. Look carefully at your goals and activities",
+  },
+  {
+    title: "Three Of Wands",
+    imageTarot: require("./assets/tarot/clubs03.jpg"),
+    imageP5: require("./assets/p5/clubs03.jpg"),
+    description:
+      "The Three of Wands can tell you to take the long view. Don't react to the heat of the moment, but step back and reconsider. See how the present fits into the greater picture.",
+  },
+  {
+    title: "Four Of Wands",
+    imageTarot: require("./assets/tarot/clubs04.jpg"),
+    imageP5: require("./assets/p5/clubs04.jpg"),
+    description:
+      "Four of Wands often represents the events and experiences that generate excitement. These vary from person to person, but the stirring feelings are the same. Sometimes such times arrive unexpectedly.",
+  },
+  {
+    title: "Five Of Wands",
+    imageTarot: require("./assets/tarot/clubs05.jpg"),
+    imageP5: require("./assets/p5/clubs05.jpg"),
+    description:
+      "Five of Wands stands for times when your environment seems to be fighting you. Nothing flows smoothly; everyone is working at cross-purposes. There is no coordinated effort, no agreement.",
+  },
+  {
+    title: "Six Of Wands",
+    imageTarot: require("./assets/tarot/clubs06.jpg"),
+    imageP5: require("./assets/p5/clubs06.jpg"),
+    description:
+      "The Six of Wands appears when you have been working hard toward a goal, and success is finally within reach. The recognition you have sought so long is yours. Now you can receive the honor and reward that you deserve.",
+  },
+  {
+    title: "Seven Of Wands",
+    imageTarot: require("./assets/tarot/clubs07.jpg"),
+    imageP5: require("./assets/p5/clubs07.jpg"),
+    description:
+      "The Seven of Wands is all about taking a stand. Taking a stand is a forceful act that changes the energy flow of the world for good or ill. It can also indicate strong convictions.",
+  },
+  {
+    title: "Eight Of Wands",
+    imageTarot: require("./assets/tarot/clubs08.jpg"),
+    imageP5: require("./assets/p5/clubs08.jpg"),
+    description:
+      "The Eight of Wands is often a sign that now is the time to declare yourself. All the elements are ready and will work for you as long as you don't hesitate. It also stands for the arrival of news.",
+  },
+  {
+    title: "Nine Of Wands",
+    imageTarot: require("./assets/tarot/clubs09.jpg"),
+    imageP5: require("./assets/p5/clubs09.jpg"),
+    description:
+      "The Nine of Wands can be a warning that you must proceed carefully. Keep a watchful eye because there is the possibility that you will be hurt. Life's lessons can be hard sometimes.",
+  },
+  {
+    title: "Ten Of Wands",
+    imageTarot: require("./assets/tarot/clubs10.jpg"),
+    imageP5: require("./assets/p5/clubs10.jpg"),
+    description:
+      "The Ten of Wands can be a sign that you are pushing yourself too hard. If your days are an endless round of duties and tasks, then you need to lighten up for the sake of your health and well-being.",
+  },
+  {
+    title: "Page Of Wands",
+    imageTarot: require("./assets/tarot/clubs11.jpg"),
+    imageP5: require("./assets/p5/clubs11.jpg"),
+    description:
+      "The Page of Wands is a messenger bringing you opportunities for passion. He delivers real chances to experience creativity, courage and inspiration. He can also stand for a child or young-at-heart adult.",
+  },
+  {
+    title: "The Knight Of Wands",
+    imageTarot: require("./assets/tarot/clubs12.jpg"),
+    imageP5: require("./assets/p5/clubs12.jpg"),
+    description:
+      "This knight is full of energy and life. He's never afraid to try something new and will reach for all he can. It shows that his confident, passionate style is involved in the situation as an aspect of you.",
+  },
+  {
+    title: "The Queen Of Wands",
+    imageTarot: require("./assets/tarot/clubs13.jpg"),
+    imageP5: require("./assets/p5/clubs13.jpg"),
+    description:
+      "The Queen of Wands asks you to think and feel as she does. This Queen can also represent a man or woman who is like her, or an atmosphere of cheerful and confident enthusiasm.",
+  },
+  {
+    title: "The King Of Wands",
+    imageTarot: require("./assets/tarot/clubs14.jpg"),
+    imageP5: require("./assets/p5/clubs14.jpg"),
+    description:
+      "The King of Wands asks you to take the kinds of actions he might take. This King can also represent a man or woman who is acting as he does, or an atmosphere of excitement, daring and drama.",
+  },
 ];
 
 export default function App() {
   const [modalVisible, setModalVisible] = useState(false);
   const [settingsVisible, setSettingsVisible] = useState(false);
   const [actionColourChange, setActionColourChange] = useState(false);
-  const [randomIndex, setRandomIndex] = useState(Math.round(Math.random() * 1));
+  const [randomIndex, setRandomIndex] = useState(
+    Math.round(Math.random() * 71)
+  );
   const [loggedIn, setLoggedIn] = useState(false);
   const [entriesData, setEntriesData] = useState([]);
   const [persona, setPersona] = useState(false);
