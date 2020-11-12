@@ -255,6 +255,7 @@ export default function App() {
               loggedIn={loggedIn}
               entriesData={entriesData}
               setEntriesData={setEntriesData}
+              persona={persona}
             />
           </View>
         </Modal>

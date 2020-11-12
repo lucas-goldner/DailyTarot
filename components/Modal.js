@@ -22,6 +22,7 @@ function BottomPopup({
   loggedIn,
   setEntriesData,
   entriesData,
+  persona,
 }) {
   const [text, setText] = useState("");
   const [textareaHeight, setTextareaHeight] = useState("");
@@ -99,7 +100,9 @@ function BottomPopup({
         <Image
           style={styles.imgCard}
           resizeMode="contain"
-          source={cards[randomIndex].imageTarot}
+          source={
+            persona ? cards[randomIndex].imageTarot : cards[randomIndex].imageP5
+          }
         />
         <View style={styles.cardInfo}>
           <Text style={styles.modalTitle}>{cards[randomIndex].title}</Text>
