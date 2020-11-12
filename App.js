@@ -84,6 +84,14 @@ export default function App() {
           values.splice(i, 1);
         }
       }
+      for (let i = 0; i < values.length; i++) {
+        if (
+          values[i] ===
+          "firebase:authUser:AIzaSyAFV_2s6MIBgAqFvNQb5HAnqBFjsMU6qEc:[DEFAULT]"
+        ) {
+          values.splice(i, 1);
+        }
+      }
       const key = values;
       AsyncStorage.multiGet(key).then((items) => {
         for (let i = 0; i <= key.length - 1; i++) {

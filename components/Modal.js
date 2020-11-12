@@ -26,32 +26,29 @@ function BottomPopup({
   const [text, setText] = useState("");
   const [textareaHeight, setTextareaHeight] = useState("");
 
-  if (loggedIn) {
+  const handleDataPush = () => {
     const user = firebaseRN.auth().currentUser.uid;
     const db = firebaseRN.firestore();
     const firebase = require("firebase");
     // Required for side-effects
     require("firebase/firestore");
-
-    const handleDataPush = () =>
-      db
-        .collection(user)
-        .add({
-          UID: user,
-          card: cards[randomIndex].title,
-          imageTarot: cards[randomIndex].imageTarot,
-          imageP5: cards[randomIndex].imageP5,
-          description: cards[randomIndex].description,
-          note: text,
-          timestamp: new Date(),
-        })
-        .then(function (docRef) {
-          console.log("Document written with ID: ", docRef.id);
-        })
-        .catch(function (error) {
-          console.error("Error adding document: ", error);
-        });
-  }
+    db.collection(user)
+      .add({
+        UID: user,
+        card: cards[randomIndex].title,
+        imageTarot: cards[randomIndex].imageTarot,
+        imageP5: cards[randomIndex].imageP5,
+        description: cards[randomIndex].description,
+        note: text,
+        timestamp: new Date(),
+      })
+      .then(function (docRef) {
+        console.log("Document written with ID: ", docRef.id);
+      })
+      .catch(function (error) {
+        console.error("Error adding document: ", error);
+      });
+  };
 
   const addData = async () => {
     const storageKey =

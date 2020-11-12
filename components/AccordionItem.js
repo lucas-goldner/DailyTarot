@@ -12,11 +12,12 @@ import {
 } from "react-native";
 import colours from "../res/colours";
 import ToggleSwitch from "rn-toggle-switch";
-import * as firebase from "firebase";
+import * as firebaseRN from "firebase";
 import * as MediaLibrary from "expo-media-library";
 import * as FileSystem from "expo-file-system";
 import * as Permissions from "expo-permissions";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import "firebase/firestore";
 
 class Toggle extends ToggleSwitch {
   onDragEnd = (e) => {
@@ -49,7 +50,7 @@ function AccordionItem({ type, isLoggedIn, entriesData, setEntriesData }) {
   const handleSignup = (event) => {
     event.preventDefault();
 
-    return firebase
+    return firebaseRN
       .auth()
       .createUserWithEmailAndPassword(emailAddress, password)
       .then(() => {
@@ -68,7 +69,7 @@ function AccordionItem({ type, isLoggedIn, entriesData, setEntriesData }) {
   const handleSignin = (event) => {
     event.preventDefault();
 
-    return firebase
+    return firebaseRN
       .auth()
       .signInWithEmailAndPassword(emailAddress, password)
       .then(() => {
@@ -85,7 +86,7 @@ function AccordionItem({ type, isLoggedIn, entriesData, setEntriesData }) {
   };
 
   const handleSignOut = () => {
-    return firebase
+    return firebaseRN
       .auth()
       .signOut()
       .then(function () {
@@ -141,6 +142,21 @@ function AccordionItem({ type, isLoggedIn, entriesData, setEntriesData }) {
       const asset = await MediaLibrary.createAssetAsync(fileUri);
       await MediaLibrary.createAlbumAsync("DailyTarot", asset, false);
     }
+  };
+
+  const loadDataFromFirebase = () => {
+    const user = firebaseRN.auth().currentUser.uid;
+    const db = firebaseRN.firestore();
+    const firebase = require("firebase");
+    db.collection(user)
+      .get()
+      .then(function (querySnapshot) {
+        console.log("-----------------");
+        querySnapshot.forEach(function (doc) {
+          console.log(doc.id, " => ", doc.data());
+          setEntriesData((oldEntries) => [...oldEntries, doc.data()]);
+        });
+      });
   };
 
   return (
@@ -206,7 +222,7 @@ function AccordionItem({ type, isLoggedIn, entriesData, setEntriesData }) {
         <View style={styles.itemView}>
           <TouchableOpacity
             style={styles.button}
-            onPress={() => handleSignOut()}
+            onPress={() => loadDataFromFirebase()}
           >
             <Text style={styles.singleButton}>Import with account</Text>
           </TouchableOpacity>
