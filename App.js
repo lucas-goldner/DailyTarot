@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Text,
   View,
@@ -56,7 +56,29 @@ export default function App() {
   const randomIndex = Math.round(Math.random() * 1);
   const [personaCard, setPersonaCards] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
-  const togglePost = () => {};
+  const [entriesData, setEntriesData] = useState([]);
+
+  useEffect(() => {
+    AsyncStorage.getAllKeys().then((values) => {
+      const key = values;
+      AsyncStorage.multiGet(key).then((items) => {
+        for (let i = 0; i <= key.length - 1; i++) {
+          let item = JSON.parse(items[i][1]);
+          setEntriesData((oldEntries) => [
+            ...oldEntries,
+            {
+              card: item.card,
+              description: item.description,
+              imageP5: item.imageP5,
+              imageTarot: item.imageTarot,
+              note: item.note,
+            },
+          ]);
+        }
+      });
+    });
+  }, []);
+
   const setActionColourChangeToTrue = () => {
     setActionColourChange(true);
   };
@@ -107,7 +129,7 @@ export default function App() {
                   onPress={() => setSettingsVisible(true)}
                 />
               </View>
-              <HistoryScreen isLoggedIn={loggedIn} />
+              <HistoryScreen isLoggedIn={loggedIn} entriesData={entriesData} />
               <Modal
                 animationType="slide"
                 transparent={true}

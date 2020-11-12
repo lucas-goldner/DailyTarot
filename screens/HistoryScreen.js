@@ -1,5 +1,12 @@
 import React, { useState, useEffect } from "react";
-import { StyleSheet, View, Text, ScrollView, Alert } from "react-native";
+import {
+  StyleSheet,
+  View,
+  Text,
+  ScrollView,
+  Alert,
+  Button,
+} from "react-native";
 import colours from "../res/colours";
 import Svg, { Path } from "react-native-svg";
 import Entry from "../components/Entry";
@@ -24,14 +31,14 @@ class Toggle extends ToggleSwitch {
   onDragStart = () => {};
 }
 
-function HistoryScreen({ isLoggedIn }) {
+function HistoryScreen({ isLoggedIn, entriesData }) {
   const [viewType, setviewType] = useState(true);
-  const [entriesData, setEntriesData] = useState([]);
   const [entryAmount, setEntryAmount] = useState(0);
   const handleChange = (val) => {
     setviewType(val);
   };
 
+  /*
   useEffect(() => {
     if (isLoggedIn == true) {
       const user = firebaseRN.auth().currentUser.uid;
@@ -54,28 +61,9 @@ function HistoryScreen({ isLoggedIn }) {
         //entries.push(<Entry key={i} />);
         //console.log(entriesData[i].card);
       }
-    } else {
-      AsyncStorage.getAllKeys().then((values) => {
-        const key = values;
-        AsyncStorage.multiGet(key).then((items) => {
-          for (let i = 0; i <= key.length - 1; i++) {
-            let item = JSON.parse(items[i][1]);
-            console.log(item);
-            setEntriesData((oldEntries) => [
-              ...oldEntries,
-              {
-                card: item.card,
-                description: item.description,
-                imageP5: item.imageP5,
-                imageTarot: item.imageTarot,
-                note: item.note,
-              },
-            ]);
-          }
-        });
-      });
-    }
+    } 
   }, []);
+  */
 
   return (
     <View>
