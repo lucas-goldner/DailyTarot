@@ -209,6 +209,8 @@ export default function App() {
               randomIndex={randomIndex}
               setModalVisible={setModalVisible}
               loggedIn={loggedIn}
+              entriesData={entriesData}
+              setEntriesData={setEntriesData}
             />
           </View>
         </Modal>

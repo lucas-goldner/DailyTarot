@@ -15,7 +15,14 @@ import * as firebaseRN from "firebase";
 import "firebase/firestore";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 
-function BottomPopup({ cards, randomIndex, setModalVisible, loggedIn }) {
+function BottomPopup({
+  cards,
+  randomIndex,
+  setModalVisible,
+  loggedIn,
+  setEntriesData,
+  entriesData,
+}) {
   const [text, setText] = useState("");
   const [textareaHeight, setTextareaHeight] = useState("");
 
@@ -60,8 +67,9 @@ function BottomPopup({ cards, randomIndex, setModalVisible, loggedIn }) {
       timestamp: new Date(),
     };
     const dataValue = JSON.stringify(data);
-    await AsyncStorage.setItem(storageKey, dataValue);
-    console.log(storageKey, dataValue);
+    await AsyncStorage.setItem(storageKey, dataValue).then(
+      setEntriesData((oldEntries) => [...oldEntries, data])
+    );
   };
 
   return (
