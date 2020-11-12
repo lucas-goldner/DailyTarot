@@ -95,7 +95,6 @@ export default function App() {
         for (let i = 0; i <= key.length - 1; i++) {
           let item = JSON.parse(items[i][1]);
           setEntriesData((oldEntries) => [
-            ...oldEntries,
             {
               card: item.card,
               description: item.description,
@@ -103,6 +102,7 @@ export default function App() {
               imageTarot: item.imageTarot,
               note: item.note,
             },
+            ...oldEntries,
           ]);
         }
       });

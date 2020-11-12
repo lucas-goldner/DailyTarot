@@ -67,6 +67,7 @@ function HistoryScreen({ isLoggedIn, entriesData, persona }) {
                       imageTarot={imageTarot}
                       note={note}
                       persona={persona}
+                      timestamp={timestamp}
                     />
                   );
                 }

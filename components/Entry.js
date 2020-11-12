@@ -2,7 +2,15 @@ import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import colours from "../res/colours";
 
-function Entry({ card, description, imageP5, imageTarot, note, persona }) {
+function Entry({
+  card,
+  description,
+  imageP5,
+  imageTarot,
+  note,
+  timestamp,
+  persona,
+}) {
   return (
     <View style={styles.entryItem}>
       <View
