@@ -13,6 +13,9 @@ import {
 import colours from "../res/colours";
 import ToggleSwitch from "rn-toggle-switch";
 import * as firebase from "firebase";
+import * as MediaLibrary from "expo-media-library";
+import * as FileSystem from "expo-file-system";
+import * as Permissions from "expo-permissions";
 
 class Toggle extends ToggleSwitch {
   onDragEnd = (e) => {
@@ -29,7 +32,7 @@ class Toggle extends ToggleSwitch {
   onDragStart = () => {};
 }
 
-function AccordionItem({ type, isLoggedIn }) {
+function AccordionItem({ type, isLoggedIn, entriesData }) {
   const [currentyLogin, setCurrentyLogin] = useState(isLoggedIn);
   const keyboardVerticalOffset = Platform.OS === "ios" ? 100 : 0;
   const [cardType, setcardType] = useState(true);
@@ -91,6 +94,22 @@ function AccordionItem({ type, isLoggedIn }) {
       .catch(function (error) {
         setError(error.message);
       });
+  };
+
+  const saveFile = async () => {
+    const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
+    if (status === "granted") {
+      let fileUri = FileSystem.documentDirectory + "text2.txt";
+      await FileSystem.writeAsStringAsync(
+        fileUri,
+        JSON.stringify(entriesData),
+        {
+          encoding: FileSystem.EncodingType.UTF8,
+        }
+      );
+      const asset = await MediaLibrary.createAssetAsync(fileUri);
+      await MediaLibrary.createAlbumAsync("DailyTarot", asset, false);
+    }
   };
 
   return (
@@ -169,10 +188,7 @@ function AccordionItem({ type, isLoggedIn }) {
         </View>
       ) : type == "export" ? (
         <View style={styles.itemView}>
-          <TouchableOpacity
-            style={styles.button}
-            onPress={() => Alert.alert("Hex")}
-          >
+          <TouchableOpacity style={styles.button} onPress={() => saveFile()}>
             <Text style={styles.singleButton}>Export to file</Text>
           </TouchableOpacity>
         </View>

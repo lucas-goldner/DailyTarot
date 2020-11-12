@@ -172,7 +172,10 @@ export default function App() {
                     />
                     <Text style={styles.modalTitle}>Settings</Text>
                   </View>
-                  <SettingsScreen isLoggedIn={loggedIn} />
+                  <SettingsScreen
+                    isLoggedIn={loggedIn}
+                    entriesData={entriesData}
+                  />
                 </View>
               </Modal>
             </View>
