@@ -34,12 +34,18 @@ class Toggle extends ToggleSwitch {
   onDragStart = () => {};
 }
 
-function AccordionItem({ type, isLoggedIn, entriesData, setEntriesData }) {
+function AccordionItem({
+  type,
+  isLoggedIn,
+  entriesData,
+  setEntriesData,
+  persona,
+  setPersona,
+}) {
   const [currentyLogin, setCurrentyLogin] = useState(isLoggedIn);
   const keyboardVerticalOffset = Platform.OS === "ios" ? 100 : 0;
-  const [cardType, setcardType] = useState(true);
   const handleChange = (val) => {
-    setcardType(val);
+    setPersona(val);
   };
   const [sure, setSure] = useState(false);
   const [emailAddress, setEmailAddress] = useState("");

@@ -11,7 +11,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import colours from "../res/colours";
 import Svg, { Circle, Path } from "react-native-svg";
 
-function CardScreen({ cards, randomIndex }) {
+function CardScreen({ cards, randomIndex, persona }) {
   return (
     <KeyboardAvoidingView behavior={"height"} keyboardVerticalOffset={-200}>
       <Svg
@@ -35,7 +35,11 @@ function CardScreen({ cards, randomIndex }) {
           <Image
             style={styles.imgCard}
             resizeMode="contain"
-            source={cards[randomIndex].imageTarot}
+            source={
+              persona
+                ? cards[randomIndex].imageTarot
+                : cards[randomIndex].imageP5
+            }
           />
           <Text
             adjustsFontSizeToFit

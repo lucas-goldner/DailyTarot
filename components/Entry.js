@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, View, Text, Image } from "react-native";
 import colours from "../res/colours";
 
-function Entry({ card, description, imageP5, imageTarot, note }) {
+function Entry({ card, description, imageP5, imageTarot, note, persona }) {
   return (
     <View style={styles.entryItem}>
       <View
@@ -10,7 +10,11 @@ function Entry({ card, description, imageP5, imageTarot, note }) {
           flex: 2,
         }}
       >
-        <Image source={imageP5} style={styles.entryCard} />
+        {persona ? (
+          <Image source={imageTarot} style={styles.entryCard} />
+        ) : (
+          <Image source={imageP5} style={styles.entryCard} />
+        )}
       </View>
       <View>
         <Text style={styles.entryTitle}>{card}</Text>

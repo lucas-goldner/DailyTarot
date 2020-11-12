@@ -29,7 +29,7 @@ class Toggle extends ToggleSwitch {
   onDragStart = () => {};
 }
 
-function HistoryScreen({ isLoggedIn, entriesData }) {
+function HistoryScreen({ isLoggedIn, entriesData, persona }) {
   const [viewType, setviewType] = useState(true);
   const [entryAmount, setEntryAmount] = useState(0);
   const handleChange = (val) => {
@@ -66,6 +66,7 @@ function HistoryScreen({ isLoggedIn, entriesData }) {
                       imageP5={imageP5}
                       imageTarot={imageTarot}
                       note={note}
+                      persona={persona}
                     />
                   );
                 }

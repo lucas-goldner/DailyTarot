@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, createContext } from "react";
 import {
   Text,
   View,
@@ -54,9 +54,9 @@ export default function App() {
   const [settingsVisible, setSettingsVisible] = useState(false);
   const [actionColourChange, setActionColourChange] = useState(false);
   const [randomIndex, setRandomIndex] = useState(Math.round(Math.random() * 1));
-  const [personaCard, setPersonaCards] = useState(false);
   const [loggedIn, setLoggedIn] = useState(false);
   const [entriesData, setEntriesData] = useState([]);
+  const [persona, setPersona] = useState(false);
 
   useEffect(() => {
     const day = "" + new Date().getDay();
@@ -135,7 +135,11 @@ export default function App() {
         <Tab.Screen
           name="Card"
           children={() => (
-            <CardScreen cards={cards} randomIndex={randomIndex} />
+            <CardScreen
+              cards={cards}
+              randomIndex={randomIndex}
+              persona={persona}
+            />
           )}
           listeners={() => setActionColourChangeToFalse()}
           options={{
@@ -159,7 +163,11 @@ export default function App() {
                   onPress={() => setSettingsVisible(true)}
                 />
               </View>
-              <HistoryScreen isLoggedIn={loggedIn} entriesData={entriesData} />
+              <HistoryScreen
+                isLoggedIn={loggedIn}
+                entriesData={entriesData}
+                persona={persona}
+              />
               <Modal
                 animationType="slide"
                 transparent={true}
@@ -182,6 +190,8 @@ export default function App() {
                     setEntriesData={setEntriesData}
                     isLoggedIn={loggedIn}
                     entriesData={entriesData}
+                    persona={persona}
+                    setPersona={setPersona}
                   />
                 </View>
               </Modal>

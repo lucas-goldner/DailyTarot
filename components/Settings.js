@@ -81,7 +81,13 @@ const IOSItem = [
   },
 ];
 
-function SettingsScreen({ isLoggedIn, entriesData, setEntriesData }) {
+function SettingsScreen({
+  isLoggedIn,
+  entriesData,
+  setEntriesData,
+  persona,
+  setPersona,
+}) {
   const [currentIndex, setCurrentIndex] = useState(null);
   const ref = useRef();
   return (
@@ -117,6 +123,8 @@ function SettingsScreen({ isLoggedIn, entriesData, setEntriesData }) {
                         isLoggedIn={isLoggedIn}
                         entriesData={entriesData}
                         setEntriesData={setEntriesData}
+                        persona={persona}
+                        setPersona={setPersona}
                       />
                     </View>
                   )}
