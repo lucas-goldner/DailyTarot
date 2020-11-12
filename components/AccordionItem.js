@@ -46,6 +46,7 @@ function AccordionItem({ type, isLoggedIn, entriesData, setEntriesData }) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [importMessage, setImportMessage] = useState("");
+  const [exportMessage, setExportMessage] = useState("");
   const isInvalid = password === "" || emailAddress === "";
 
   const handleSignup = (event) => {
@@ -133,6 +134,7 @@ function AccordionItem({ type, isLoggedIn, entriesData, setEntriesData }) {
     const { status } = await Permissions.askAsync(Permissions.CAMERA_ROLL);
     if (status === "granted") {
       let fileUri = FileSystem.documentDirectory + "entries.txt";
+
       await FileSystem.writeAsStringAsync(
         fileUri,
         JSON.stringify(entriesData),
@@ -269,9 +271,16 @@ function AccordionItem({ type, isLoggedIn, entriesData, setEntriesData }) {
         </View>
       ) : type == "export" ? (
         <View style={styles.itemView}>
-          <TouchableOpacity style={styles.button} onPress={() => saveFile()}>
+          <TouchableOpacity
+            style={styles.button}
+            onPress={() => (
+              saveFile(),
+              setExportMessage("Exported to entries.txt in DailyTarot folder")
+            )}
+          >
             <Text style={styles.singleButton}>Export to file</Text>
           </TouchableOpacity>
+          <Text style={styles.sucMSG}>{exportMessage}</Text>
         </View>
       ) : type == "reset" ? (
         <View style={styles.itemView}>
