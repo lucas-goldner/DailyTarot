@@ -16,6 +16,7 @@ import * as firebase from "firebase";
 import * as MediaLibrary from "expo-media-library";
 import * as FileSystem from "expo-file-system";
 import * as Permissions from "expo-permissions";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 class Toggle extends ToggleSwitch {
   onDragEnd = (e) => {
@@ -104,7 +105,23 @@ function AccordionItem({ type, isLoggedIn, entriesData, setEntriesData }) {
         encoding: FileSystem.EncodingType.UTF8,
       })
         .then((data) => {
-          setEntriesData(JSON.parse(data));
+          const jsonData = JSON.parse(data);
+          const writeArray = [];
+          jsonData.forEach((element) => {
+            writeArray.push([
+              JSON.stringify(
+                "DToffline" +
+                  Math.random().toString(36).substring(2, 15) +
+                  Math.random().toString(36).substring(2, 15)
+              ),
+              JSON.stringify(element),
+            ]);
+          });
+          console.log(writeArray);
+
+          AsyncStorage.multiSet(writeArray);
+
+          setEntriesData(jsonData);
         })
         .catch((error) => console.log(error));
     }
