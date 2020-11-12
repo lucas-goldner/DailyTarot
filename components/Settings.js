@@ -5,6 +5,7 @@ import {
   Text,
   TouchableOpacity,
   ScrollView,
+  Platform,
 } from "react-native";
 
 import { Transition, Transitioning } from "react-native-reanimated";
@@ -19,34 +20,47 @@ const transition = (
   </Transition.Together>
 );
 
-const items = [
+const Androiditems = [
   {
     category: "Login / Register",
-    subCategories: ["Skincare", "Health", "Eye care"],
     type: "login",
     marginTop: 10,
   },
   {
     category: "Import Entries",
-    subCategories: ["Fruits ", "Frozen Food", "Bakery"],
     type: "import",
     marginTop: 10,
   },
   {
     category: "Export Entries",
-    subCategories: ["Skincare", "Nail care", "Perfume"],
     type: "export",
     marginTop: 10,
   },
   {
     category: "Change Theme",
-    subCategories: ["Skincare", "Nail care", "Perfume"],
     type: "theme",
     marginTop: 10,
   },
   {
     category: "Credits",
-    subCategories: ["Air purifiers", "hoods & ovens", "Refrigerators"],
+    type: "credits",
+    marginTop: 10,
+  },
+];
+
+const IOSItem = [
+  {
+    category: "Login / Register",
+    type: "login",
+    marginTop: 10,
+  },
+  {
+    category: "Change Theme",
+    type: "theme",
+    marginTop: 10,
+  },
+  {
+    category: "Credits",
     type: "credits",
     marginTop: 10,
   },
@@ -62,38 +76,75 @@ function SettingsScreen({ isLoggedIn, entriesData, setEntriesData }) {
         transition={transition}
         style={styles.container}
       >
-        {items.map(({ category, type, marginTop }, index) => {
-          return (
-            <TouchableOpacity
-              key={category}
-              onPress={() => {
-                ref.current.animateNextTransition();
-                setCurrentIndex(index === currentIndex ? null : index);
-              }}
-              style={styles.cardContainer}
-              activeOpacity={0.5}
-            >
-              <View style={styles.card}>
-                <Text style={styles.modalTitle}>{category}</Text>
-                {index === currentIndex && (
-                  <View
-                    style={{
-                      ...styles.subCategoriesList,
-                      marginTop: marginTop,
-                    }}
-                  >
-                    <AccordionItem
-                      type={type}
-                      isLoggedIn={isLoggedIn}
-                      entriesData={entriesData}
-                      setEntriesData={setEntriesData}
-                    />
-                  </View>
-                )}
-              </View>
-            </TouchableOpacity>
-          );
-        })}
+        {Platform.OS === "android" ? (
+          Androiditems.map(({ category, type, marginTop }, index) => {
+            return (
+              <TouchableOpacity
+                key={category}
+                onPress={() => {
+                  ref.current.animateNextTransition();
+                  setCurrentIndex(index === currentIndex ? null : index);
+                }}
+                style={styles.cardContainer}
+                activeOpacity={0.5}
+              >
+                <View style={styles.card}>
+                  <Text style={styles.modalTitle}>{category}</Text>
+                  {index === currentIndex && (
+                    <View
+                      style={{
+                        ...styles.subCategoriesList,
+                        marginTop: marginTop,
+                      }}
+                    >
+                      <AccordionItem
+                        type={type}
+                        isLoggedIn={isLoggedIn}
+                        entriesData={entriesData}
+                        setEntriesData={setEntriesData}
+                      />
+                    </View>
+                  )}
+                </View>
+              </TouchableOpacity>
+            );
+          })
+        ) : Platform.OS === "ios" ? (
+          IOSItem.map(({ category, type, marginTop }, index) => {
+            return (
+              <TouchableOpacity
+                key={category}
+                onPress={() => {
+                  ref.current.animateNextTransition();
+                  setCurrentIndex(index === currentIndex ? null : index);
+                }}
+                style={styles.cardContainer}
+                activeOpacity={0.5}
+              >
+                <View style={styles.card}>
+                  <Text style={styles.modalTitle}>{category}</Text>
+                  {index === currentIndex && (
+                    <View
+                      style={{
+                        ...styles.subCategoriesList,
+                        marginTop: marginTop,
+                      }}
+                    >
+                      <AccordionItem
+                        type={type}
+                        isLoggedIn={isLoggedIn}
+                        entriesData={entriesData}
+                        setEntriesData={setEntriesData}
+                      />
+                    </View>
+                  )}
+                </View>
+              </TouchableOpacity>
+            );
+          })
+        ) : (
+          <> </>
+        )}
       </Transitioning.View>
     </ScrollView>
   );

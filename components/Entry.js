@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
   entryItem: {
     height: 600,
-    width: 290,
+    width: 300,
     borderColor: colours.secondary,
     marginLeft: 50,
     backgroundColor: colours.bg,
@@ -48,11 +48,11 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 10,
+      height: 0,
     },
     shadowOpacity: 0.2,
-    shadowRadius: 26.0,
-    elevation: 5,
+    shadowRadius: 2.0,
+    elevation: 1,
   },
 });
 
