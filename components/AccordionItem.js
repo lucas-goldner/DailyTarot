@@ -45,7 +45,12 @@ function AccordionItem({
   const [currentyLogin, setCurrentyLogin] = useState(isLoggedIn);
   const keyboardVerticalOffset = Platform.OS === "ios" ? 100 : 0;
   const handleChange = (val) => {
-    setPersona(val);
+    const storageKey = "persona";
+    const dataValue = "" + val;
+    AsyncStorage.setItem(storageKey, dataValue).then(
+      setPersona(val),
+      console.log(val)
+    );
   };
   const [sure, setSure] = useState(false);
   const [emailAddress, setEmailAddress] = useState("");

@@ -590,7 +590,7 @@ export default function App() {
   );
   const [loggedIn, setLoggedIn] = useState(false);
   const [entriesData, setEntriesData] = useState([]);
-  const [persona, setPersona] = useState(false);
+  const [persona, setPersona] = useState(true);
 
   useEffect(() => {
     const day = "" + new Date().getDay();
@@ -606,6 +606,13 @@ export default function App() {
           AsyncStorage.setItem("randomIndex", newRandomIndex),
           setRandomIndex(newRandomIndex))
     );
+    AsyncStorage.getItem("persona").then((value) => {
+      if (value == "false") {
+        setPersona(false);
+      } else {
+        setPersona(true);
+      }
+    });
     AsyncStorage.getAllKeys().then((values) => {
       for (let i = 0; i < values.length; i++) {
         if (values[i] === "curDay") {
@@ -614,6 +621,11 @@ export default function App() {
       }
       for (let i = 0; i < values.length; i++) {
         if (values[i] === "randomIndex") {
+          values.splice(i, 1);
+        }
+      }
+      for (let i = 0; i < values.length; i++) {
+        if (values[i] === "persona") {
           values.splice(i, 1);
         }
       }
