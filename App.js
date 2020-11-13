@@ -481,6 +481,104 @@ const cards = [
     description:
       "He is a man of intellect who can absorb and work with information of all kinds. As a master of reason and logic, he analyzes any problem with ease and works out solutions quickly.",
   },
+  {
+    title: "Ace Of Pentacles",
+    imageTarot: require("./assets/tarot/coins01.jpg"),
+    imageP5: require("./assets/p5/coins01.jpg"),
+    description:
+      "The Ace of Pentacles is a symbol of possibility in the area of abundance, trust, security and groundedness. It shows that a seed of productivity has been planted in your life although you may not recognize it.",
+  },
+  {
+    title: "Two Of Pentacles",
+    imageTarot: require("./assets/tarot/coins02.jpg"),
+    imageP5: require("./assets/p5/coins02.jpg"),
+    description:
+      "The Two of Pentacles lets you know that you can juggle all demands made upon you. You will relish the excitement of every hurdle. If you do not feel this level of confidence, this card asks you to believe in yourself.",
+  },
+  {
+    title: "Three Of Pentacles",
+    imageTarot: require("./assets/tarot/coins03.jpg"),
+    imageP5: require("./assets/p5/coins03.jpg"),
+    description:
+      "The Three of Pentacles focuses on the group. There are few jobs that can be accomplished alone. We need the help of others to achieve our goals. Sometimes it is a sign that you will be more productive by working with others.",
+  },
+  {
+    title: "Four Of Pentacles",
+    imageTarot: require("./assets/tarot/coins04.jpg"),
+    imageP5: require("./assets/p5/coins04.jpg"),
+    description:
+      "The Four of Pentacles can stand for issues of ownership. You may be involved in getting and keeping money or some other commodity. You may be having problems with possessiveness or jealousy.",
+  },
+  {
+    title: "Five Of Pentacles",
+    imageTarot: require("./assets/tarot/coins05.jpg"),
+    imageP5: require("./assets/p5/coins05.jpg"),
+    description:
+      "The Five of Pentacles can represent several kinds of lack. For example: Poor health. It can also represent rejection or lack of acceptance. We are social animals and feel pain when excluded from our group.",
+  },
+  {
+    title: "Six Of Pentacles",
+    imageTarot: require("./assets/tarot/coins06.jpg"),
+    imageP5: require("./assets/p5/coins06.jpg"),
+    description:
+      "The Six of Pentacles covers the huge middle ground where it is not clear exactly who has what. It asks you to look very deeply into the whole issue of what having really means both materially and immaterially.",
+  },
+  {
+    title: "Seven Of Pentacles",
+    imageTarot: require("./assets/tarot/coins07.jpg"),
+    imageP5: require("./assets/p5/coins07.jpg"),
+    description:
+      "The Seven of Pentacles represents those moments after a rush of activity when we stop to catch our breath and look around. It can indicate a reward that will come your way, particularly as a result of your own efforts.",
+  },
+  {
+    title: "Eight Of Pentacles",
+    imageTarot: require("./assets/tarot/coins08.jpg"),
+    imageP5: require("./assets/p5/coins08.jpg"),
+    description:
+      "This card often implies a time of great diligence and focus. It advises you to hammer away at the business of the moment, whether a work project, family difficulty, personal goal or unpleasant duty.",
+  },
+  {
+    title: "Nine Of Pentacles",
+    imageTarot: require("./assets/tarot/coins09.jpg"),
+    imageP5: require("./assets/p5/coins09.jpg"),
+    description:
+      "The Nine of Pentacles represents all that is most gracious, high-minded and civilized. Art, music and other forms of beauty are very much part of our physical world (Pentacles). It can also be a sign of discipline and self-control.",
+  },
+  {
+    title: "Ten Of Pentacles",
+    imageTarot: require("./assets/tarot/coins10.jpg"),
+    imageP5: require("./assets/p5/coins10.jpg"),
+    description:
+      "The Ten of Pentacles stands for the ultimate in worldly and material success. This is the card you want to see if you are wondering how your latest enterprise will turn out. Wealth and affluence are yours.",
+  },
+  {
+    title: "Page Of Pentacles",
+    imageTarot: require("./assets/tarot/coins11.jpg"),
+    imageP5: require("./assets/p5/coins11.jpg"),
+    description:
+      "Page of Pentacles is a messenger bringing you opportunities for prosperity. He delivers real chances to experience wealth, abundance, security and solid achievement.",
+  },
+  {
+    title: "Knight Of Pentacles",
+    imageTarot: require("./assets/tarot/coins12.jpg"),
+    imageP5: require("./assets/p5/coins12.jpg"),
+    description:
+      "Knight of Pentacles is like a bulldog. Once he bites down, you can be sure he won't let go. He's dogged in pursuit of his goals. A hard-worker, he has tremendous stamina and dedication.",
+  },
+  {
+    title: "Queen Of Pentacles",
+    imageTarot: require("./assets/tarot/coins13.jpg"),
+    imageP5: require("./assets/p5/coins13.jpg"),
+    description:
+      "The Queen of Pentacles asks you to think and feel as she does. For example: Are you feeling warm and caring toward others? Are you being sensible? Have you been true to your word? Do you feel generous?",
+  },
+  {
+    title: "King Of Pentacles",
+    imageTarot: require("./assets/tarot/coins14.jpg"),
+    imageP5: require("./assets/p5/coins14.jpg"),
+    description:
+      "The King of Pentacles asks you to take the kinds of actions he might take. For example: keeping a comittment, fixing something that's broken, making money, or sponsoring a new enterprise.",
+  },
 ];
 
 export default function App() {
@@ -496,14 +594,15 @@ export default function App() {
 
   useEffect(() => {
     const day = "" + new Date().getDay();
-    const newRandomIndex = "" + Math.round(Math.random() * 1);
+    const newRandomIndex = "" + Math.round(Math.random() * 71);
     AsyncStorage.getItem("curDay").then((value) =>
       day === value
-        ? (AsyncStorage.getItem("randomIndex").then((value) =>
+        ? AsyncStorage.getItem("randomIndex").then(
+            (value) => console.log("same day"),
             setRandomIndex(value)
-          ),
-          setRandomIndex(1))
+          )
         : (AsyncStorage.setItem("curDay", day),
+          console.log("new day"),
           AsyncStorage.setItem("randomIndex", newRandomIndex),
           setRandomIndex(newRandomIndex))
     );

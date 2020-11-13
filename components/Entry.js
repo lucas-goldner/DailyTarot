@@ -25,9 +25,6 @@ function Entry({
         )}
       </View>
       <View>
-        <Text style={{ ...styles.entryTitle, fontSize: 10 }}>
-          {"" + timestamp.slice(0, 21)}
-        </Text>
         <Text style={styles.entryTitle}>{card}</Text>
       </View>
       <View>
