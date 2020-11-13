@@ -88,10 +88,12 @@ function BottomPopup({
             {
               loggedIn
                 ? (handleDataPush(),
-                  Alert.alert("Publishing Entry"),
+                  addData(),
+                  Alert.alert("Added Entry and pushed it to database"),
                   setModalVisible(false))
-                : addData(),
-                (Alert.alert("Saved Entry"), setModalVisible(false));
+                : (addData(),
+                  Alert.alert("Added Entry"),
+                  setModalVisible(false));
             }
           }}
         />
